@@ -1,6 +1,6 @@
 site_name: "Kurs języka norweskiego"
 site_description: "Kompleksowy kurs języka norweskiego - od podstaw do zaawansowanego poziomu"
-site_author: "Twój Nauczyciel Norweskiego"
+site_author: "Nauczyciel Norweskiego"
 site_url: "https://tomyc.github.io/norwegian-course/"
 
 repo_name: "norwegian-course"
@@ -9,7 +9,7 @@ edit_uri: "edit/main/docs/"
 
 theme:
   name: material
-  language: pl
+  language: en
   palette:
     # Palette toggle for light mode
     - scheme: default
@@ -39,7 +39,6 @@ theme:
     - content.action.edit
     - content.action.view
     - content.code.copy
-    - content.code.annotate
   icon:
     repo: fontawesome/brands/github
     edit: material/pencil
@@ -47,19 +46,14 @@ theme:
 
 plugins:
   - search:
-      lang:
-        - pl
-        - en
-        - no
+      lang: en
   - minify:
       minify_html: true
-  - awesome-pages
 
 markdown_extensions:
   - abbr
   - admonition
   - attr_list
-  - codehilite
   - def_list
   - footnotes
   - md_in_html
@@ -72,18 +66,15 @@ markdown_extensions:
   - pymdownx.caret
   - pymdownx.details
   - pymdownx.emoji:
-      emoji_generator: !!python/name:materialx.emoji.to_svg
-      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
   - pymdownx.highlight:
       anchor_linenums: true
       line_spans: __span
       pygments_lang_class: true
   - pymdownx.inlinehilite
   - pymdownx.keys
-  - pymdownx.magiclink:
-      repo_url_shorthand: true
-      user: twoja-nazwa-uzytkownika
-      repo: norwegian-course
+  - pymdownx.magiclink
   - pymdownx.mark
   - pymdownx.smartsymbols
   - pymdownx.superfences
