@@ -145,4 +145,4 @@ extra:
     provider: google
     property: !ENV [GOOGLE_ANALYTICS_KEY, ""]
 
-copyright: "Copyright &copy; 2024 - Kurs języka norweskiego"
+copyright: "Copyright &copy; 2025 - Kurs języka norweskiego"
