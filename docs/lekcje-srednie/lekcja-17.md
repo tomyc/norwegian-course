@@ -1,7 +1,7 @@
-# Lekcja 17: Miesiące
+# Lekcja 17: Miesiące i stopniowanie przymiotników
 
 ## Cel lekcji
-Nauka nazw miesięcy, świąt oraz zaimków wskazujących.
+Nauka nazw miesięcy, świąt, zaimków wskazujących oraz **stopniowania przymiotników** (bardzo ważny temat gramatyczny).
 
 ## Świąt i pozdrowienia
 
@@ -31,13 +31,14 @@ Nauka nazw miesięcy, świąt oraz zaimków wskazujących.
 - **Hvilke måned liker du best?** - Który miesiąc lubisz najbardziej?
 - **Jeg liker juli best, fordi denne måneden er varm og alt er grønn** - Lubię lipiec najbardziej, ponieważ ten miesiąc jest ciepły i wszystko jest zielone
 
-## Zaimki wskazujące - kontynuacja
+## Zaimki wskazujące (denne/dette/disse)
 
 ### System zaimków wskazujących
 
 #### En, ei - denne
 - **en måned** → **denne måneden** - ten miesiąc
 - **ei kvinne** → **denne kvinnen** - ta kobieta
+- **denne døra** - te drzwi
 
 #### Et - dette
 - **et barn** → **dette barnet** - to dziecko
@@ -52,16 +53,118 @@ Nauka nazw miesięcy, świąt oraz zaimków wskazujących.
 - **juli er varm** - lipiec jest ciepły
 - **denne måneden er varm** - ten miesiąc jest ciepły
 
-## Słownictwo
+## Stopniowanie przymiotników (Adjektivets gradbøyning)
 
-### Natura i rośliny
-- **et tre** - drzewo
-- **alt er grønn** - wszystko jest zielone
-- **grønn** - zielony
+⭐ **To bardzo ważny temat w języku norweskim!**
 
-### Kobieta
-- **ei kvinne** - kobieta
-- **kvinna** - kobieta (alternatywna forma)
+### Podstawowe formy
+| Forma | Nazwa | Znaczenie |
+|-------|-------|-----------|
+| **POSITIV** | stopień równy | podstawowa forma |
+| **KOMPARATIV** | stopień wyższy | więcej/bardziej |
+| **SUPERLATIV** | stopień najwyższy | najwięcej/najbardziej |
+
+### Standardowe stopniowanie: -ere, -est
+
+#### Przykłady regularne
+| POSITIV | KOMPARATIV | SUPERLATIV |
+|---------|------------|------------|
+| **snill** (miły) | **snillere** | **snillest** |
+| **frekk** (bezczelny) | **frekkere** | **frekkest** |
+| **sterk** (silny) | **sterkere** | **sterkest** |
+
+### Specjalne przypadki stopniowania
+
+#### Przymiotniki kończące się na -el, -en, -er
+❗ **Tracą samogłoskę przed końcówką**
+| POSITIV | KOMPARATIV | SUPERLATIV |
+|---------|------------|------------|
+| **sulten** (głodny) | **sulnere** | **sultnest** |
+| **vakker** (piękny) | **vakrere** | **vakrest** |
+| **enkel** (prosty) | **enklere** | **enklest** |
+
+#### Przymiotniki kończące się na -m
+❗ **Podwajają -m**
+| POSITIV | KOMPARATIV | SUPERLATIV |
+|---------|------------|------------|
+| **tam** (oswojony) | **tammere** | **tammest** |
+| **dum** (głupi) | **dummere** | **dummest** |
+
+#### Przymiotniki kończące się na nieakcentowane -e
+| POSITIV | KOMPARATIV | SUPERLATIV |
+|---------|------------|------------|
+| **stille** (cichy) | **stillere** | **stillest** |
+
+### Przegłos (Umlaut)
+Część przymiotników zmienia samogłoskę w stopniu wyższym i najwyższym:
+
+| POSITIV | KOMPARATIV | SUPERLATIV |
+|---------|------------|------------|
+| **lang** | **lengre** | **lengst** |
+| **stor** | **større** | **størst** |
+| **ung** | **yngre** | **yngst** |
+| **gammel** | **eldre** | **eldst** |
+
+### Używanie "enn" i "av"
+
+#### "enn" - w porównaniach
+- **Arne er styggere enn Per** - Arne jest brzydszy od Pera
+
+#### "av" - z superlativem
+- **Per er styggest av alle** - Per jest najbrzydszy ze wszystkich
+
+### Ważna uwaga gramatyczna!
+
+❗ **W zdaniach bez "enn" należy użyć stopnia najwyższego - w przeciwieństwie do języka polskiego**
+
+**Przykład:**
+- **Hvem er styggest, Per eller Arne?** - Kto jest brzydszy?
+- **Per er styggest** - Per jest brzydszy
+
+(Po polsku: "brzydszy", ale po norwesku: "styggest" - stopień najwyższy!)
+
+### Odmiana przymiotników w stopniu wyższym i najwyższym
+
+#### Stopień wyższy (komparativ)
+❗ **Przymiotnik w stopniu wyższym się NIE odmienia**
+- **en nyere avis** vs. **den nyere avisa**
+
+#### Stopień najwyższy (superlativ)
+❗ **Przymiotnik w stopniu najwyższym dostaje końcówkę -e w konstrukcji określonej**
+- **huset er lavest** vs. **det laveste huset**
+- **mannen er høyest** vs. **den høyeste mannen**
+
+### Stopniowanie nieregularne - końcówki -re, -st
+
+| POSITIV | KOMPARATIV | SUPERLATIV |
+|---------|------------|------------|
+| **liten** (mały) | **mindre** | **minst** |
+| **stor** (duży) | **større** | **størst** |
+| **gammel** (stary) | **eldre** | **eldst** |
+| **ung** (młody) | **yngre** | **yngst** |
+
+### Stopniowanie opisowe (mer/mest)
+
+❗ **Stosuje się przy następujących przymiotnikach:**
+
+#### Gdy używać "mer" i "mest":
+1. **Kończące się na -sk**: typisk → mer typisk → mest typisk
+2. **Kończące się na -et(e)**: steinete → mer steinete → mest steinete  
+3. **Przymiotniki złożone**: firkantet → mer firkantet → mest firkantet
+4. **Część przymiotników pochodzenia obcego**
+5. **Imiesłowy użyte przymiotnikowo**: kokende → mer kokende → mest kokende
+
+### Wyrażenia progresywne ("coraz bardziej...")
+
+#### Dwa sposoby wyrażenia:
+1. **stadig + komparativ**: Han spiser stadig flere epler
+2. **komparativ + og + komparativ**: Han spiser flere og flere epler
+
+**Przykłady:**
+- **Folk spiser stadig mer kjøtt** - Ludzie jedzą coraz więcej mięsa
+- **Folk spiser mer og mer kjøtt** - Ludzie jedzą coraz więcej mięsa
+
+## Urodziny i czas
 
 ### Urodziny
 - **bursdag** - urodziny
@@ -72,96 +175,86 @@ Nauka nazw miesięcy, świąt oraz zaimków wskazujących.
 - **Når ble du født?** - Kiedy zostałeś urodzony?
 - **å bli** - stawać się
 
-## Czynności
+## Słownictwo uzupełniające
 
-### Hamowanie
+### Natura i rośliny
+- **et tre** - drzewo
+- **alt er grønn** - wszystko jest zielone
+- **grønn** - zielony
+
+### Kobieta
+- **ei kvinne** - kobieta → **kvinna**
+- **ei dør** - drzwi → **døra**
+
+### Czynności
 - **å bremse** - hamować
 
-## Zwroty grzecznościowe
-
-### Podziękowania
+### Zwroty grzecznościowe
 - **Tusen takk** - dziękuję bardzo
 - **takk skal du ha** - dziękuję bardzo
 - **Tusen takk skal du ha** - dziękuję bardzo
 
-## Jedzenie i przekąski
-
-### Słodycze
+### Jedzenie i przekąski
 - **en is** - lody
 - **potetgull** - chipsy
 
-## Przydatne słowa
-
-### Wyrażenia codzienne
+### Przydatne słowa
 - **selvfølgelig** - oczywiście
 - **gjerne** - chętnie
 - **kanskje** - może, chyba
 
-## Przykłady użycia
-
-### Rozmowa o miesiącach
-- **Jeg liker mai, fordi det er mange blomster** - Lubię maj, ponieważ jest dużo kwiatów
-- **Desember er kald, men det er koselig** - Grudzień jest zimny, ale przytulny
-- **I august reiser mange på ferie** - W sierpniu wielu ludzi jedzie na wakacje
-
-### Z zaimkami wskazującymi
-- **Denne bilen er rød** - Ten samochód jest czerwony
-- **Dette huset er stort** - Ten dom jest duży
-- **Disse barna leker** - Te dzieci się bawią
-
-### Grzeczność
-- **Kan du hjelpe meg? - Selvfølgelig!** - Czy możesz mi pomóc? - Oczywiście!
-- **Vil du ha is? - Gjerne!** - Czy chcesz lody? - Chętnie!
-- **Kommer du i morgen? - Kanskje** - Czy przyjdziesz jutro? - Może
-
 ## Ćwiczenia praktyczne
 
-### Ćwiczenie 1: Miesiące
+### Ćwiczenie 1: Stopniowanie przymiotników
+Podaj formy stopniowania:
+1. **billig** (tani) → _______ → _______
+2. **vanskelig** (trudny) → _______ → _______
+3. **vakker** (piękny) → _______ → _______
+
+### Ćwiczenie 2: "enn" vs "av"
+Uzupełnij zdania:
+1. Hun er høyere _____ meg.
+2. Han er høyest _____ alle brødrene sine.
+3. Dette huset er større _____ det andre.
+
+### Ćwiczenie 3: Miesiące
 Odpowiedz na pytania:
 1. **Hvilke måned har du bursdag?**
 2. **Hvilke måned liker du best og hvorfor?**
-3. **Hvilke måned er kaldest i Norge?**
 
-### Ćwiczenie 2: Zaimki wskazujące
+### Ćwiczenie 4: Zaimki wskazujące
 Wybierz właściwy zaimek:
 1. ___ (denne/dette) måneden er varm.
 2. ___ (denne/dette) treet er høyt.
 3. ___ (disse/denne) bilene er nye.
 
-### Ćwiczenie 3: Przetłumacz
-1. Ten miesiąc jest bardzo ciepły
-2. Mam urodziny w maju
-3. Czy chcesz lody? - Chętnie!
-4. Te dzieci są bardzo miłe
-
 ### Odpowiedzi
-**Ćwiczenie 1:** (przykładowe) 1. Jeg har bursdag i mai, 2. Jeg liker juli best, fordi det er varmt, 3. Januar er kaldest  
-**Ćwiczenie 2:** 1. denne, 2. dette, 3. disse  
-**Ćwiczenie 3:** 1. Denne måneden er veldig varm, 2. Jeg har bursdag i mai, 3. Vil du ha is? - Gjerne!, 4. Disse barna er veldig snille
+**Ćwiczenie 1:** 1. billigere → billigst, 2. vanskeligere → vanskeligst, 3. vakrere → vakrest  
+**Ćwiczenie 2:** 1. enn, 2. av, 3. enn  
+**Ćwiczenie 3:** (przykładowe) 1. Jeg har bursdag i mai, 2. Jeg liker juli best, fordi det er varmt  
+**Ćwiczenie 4:** 1. denne, 2. dette, 3. disse
 
-## Dialog praktyczny
+## Dialog praktyczny - Porównywanie
 
 ```
-A: Når har du bursdag?
-B: Jeg har bursdag i september. Og du?
-A: Jeg ble født i mai. Jeg liker den måneden.
-B: Hvorfor liker du mai?
-A: Fordi alt blir grønt og det er varmt.
-B: Det er sant. Vil du ha bursdag fest i år?
-A: Kanskje. Vil du komme hvis jeg har fest?
-B: Selvfølgelig! Jeg kommer gjerne.
+A: Hvilket hus liker du best?
+B: Jeg liker det røde huset. Det er større enn det blå.
+A: Men det blå huset er vakrere, synes jeg.
+B: Det er sant, men det røde er mest praktisk av alle husene her.
+A: Hvilke måned flytter du?
+B: Jeg flytter i mai. Den måneden er finest, synes jeg.
+A: Jeg er enig. Mai er varmere enn april, men ikke så varm som juni.
 ```
 
 ### Tłumaczenie:
 ```
-A: Kiedy masz urodziny?
-B: Mam urodziny we wrześniu. A ty?
-A: Urodziłem się w maju. Lubię ten miesiąc.
-B: Dlaczego lubisz maj?
-A: Ponieważ wszystko staje się zielone i jest ciepło.
-B: To prawda. Czy będziesz miał przyjęcie urodzinowe w tym roku?
-A: Może. Czy przyjdziesz, jeśli będę miał przyjęcie?
-B: Oczywiście! Chętnie przyjdę.
+A: Który dom lubisz najbardziej?
+B: Lubię czerwony dom. Jest większy niż niebieski.
+A: Ale niebieski dom jest piękniejszy, moim zdaniem.
+B: To prawda, ale czerwony jest najbardziej praktyczny ze wszystkich domów tutaj.
+A: W którym miesiącu się przeprowadzasz?
+B: Przeprowadzam się w maju. Ten miesiąc jest najpiękniejszy, moim zdaniem.
+A: Zgadzam się. Maj jest cieplejszy niż kwiecień, ale nie tak ciepły jak czerwiec.
 ```
 
 ## Kalendarz norweski
@@ -175,7 +268,7 @@ B: Oczywiście! Chętnie przyjdę.
 
 ### Sezony w miesięcy
 - **Vinter**: desember, januar, februar
-- **Vår**: mars, april, mai
+- **Vår**: mars, april, mai  
 - **Sommer**: juni, juli, august
 - **Høst**: september, oktober, november
 
@@ -184,6 +277,7 @@ B: Oczywiście! Chętnie przyjdę.
 **Następna lekcja**: [Lekcja 18: Czasy przeszłe](../lekcje-zaawansowane/lekcja-18.md)
 
 **Zobacz również:**
+- [Stopniowanie przymiotników](../gramatyka/stopniowanie-przymiotnikow.md)
 - [Miesiące i pory roku](../slownictwo/pory-roku.md)
 - [Zaimki wskazujące](../gramatyka/zaimki.md)
 - [Podstawowe zwroty](../slownictwo/podstawowe-zwroty.md)
