@@ -149,7 +149,7 @@ nav:
 extra:
   social:
     - icon: fontawesome/brands/github
-      link: https://github.com/twoja-nazwa-uzytkownika
+      link: https://github.com/tomyc
   analytics:
     provider: google
     property: !ENV [GOOGLE_ANALYTICS_KEY, ""]
