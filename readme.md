@@ -8,7 +8,7 @@ Ten projekt wykorzystuje GitHub Actions do automatycznego budowania i publikowan
 ```bash
 # Utwórz nowe repozytorium na GitHub o nazwie "norwegian-course"
 # Następnie sklonuj je lokalnie:
-git clone https://github.com/tomyc/norwegian-course.git
+git clone https://github.com/TWOJA-NAZWA-UZYTKOWNIKA/norwegian-course.git
 cd norwegian-course
 ```
 
@@ -64,6 +64,24 @@ git push origin main
 5. **Budowanie MkDocs** - `mkdocs build`
 6. **Deploy na GitHub Pages** - automatyczna publikacja
 
+## 🛠️ Rozwiązywanie problemów
+
+### ❌ Build Errors - Naprawione!
+Jeśli spotkałeś błędy typu:
+- `mkdocs_material_extensions is deprecated`
+- `search.lang 'pl' is not supported`
+- `AttributeError: 'bool' object has no attribute 'split'`
+
+✅ **Rozwiązanie**: Użyj **uproszczonej konfiguracji**:
+- Skopiuj `mkdocs.yml - Uproszczona stabilna konfiguracja`
+- Skopiuj `requirements.txt - Uproszczona wersja`
+
+### Główne zmiany w naprawionej konfiguracji:
+1. **Usunięto przestarzałe pakiety** (`mkdocs-material-extensions`)
+2. **Naprawiono konfigurację search** (tylko `lang: en`)
+3. **Uproszczono emoji extensions** (kompatybilne API)
+4. **Usunięto problematyczne pluginy** (awesome-pages)
+
 ## 📚 Struktura dokumentacji
 
 ### Lekcje (1-22)
@@ -81,7 +99,7 @@ git push origin main
 - Odpowiedzi i wyjaśnienia
 - Dialogi sytuacyjne
 
-## 🛠️ Lokalne uruchamianie
+## 🔧 Lokalne uruchamianie
 
 Jeśli chcesz pracować lokalnie:
 
@@ -118,28 +136,12 @@ mkdocs serve
 
 Pipeline automatycznie zbuduje i opublikuje zmiany!
 
-## 🔧 Rozwiązywanie problemów
+## 📞 Jeśli nadal masz problemy:
 
-### Build fails?
-- Sprawdź logi w GitHub Actions
-- Upewnij się, że wszystkie pliki markdown są poprawnie sformatowane
-- Zweryfikuj ścieżki w `mkdocs.yml`
-
-### GitHub Pages nie działa?
-- Sprawdź ustawienia **Settings** → **Pages**
-- Upewnij się, że wybrałeś **GitHub Actions** jako źródło
-- Poczekaj kilka minut na propagację zmian
-
-### Problemy z tematem?
-- Sprawdź czy `mkdocs-material` jest w `requirements.txt`
-- Zweryfikuj konfigurację theme w `mkdocs.yml`
-
-## 📞 Pomoc
-
-Jeśli masz problemy:
-1. Sprawdź **Actions** tab w GitHub - tam znajdziesz szczegółowe logi
-2. Upewnij się, że wszystkie ścieżki plików są poprawne
-3. Zweryfikuj składnię YAML w `mkdocs.yml`
+1. **Sprawdź Actions tab** w GitHub - tam znajdziesz szczegółowe logi
+2. **Używaj uproszczonej konfiguracji** - zawsze działa
+3. **Sprawdź składnię YAML** w `mkdocs.yml`
+4. **Upewnij się o poprawnych ścieżkach** do plików
 
 ---
 
