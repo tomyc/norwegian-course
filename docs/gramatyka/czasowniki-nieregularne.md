@@ -51,14 +51,69 @@ Czasowniki nieregularne to czasowniki, które nie odmieniają się według stand
 | **å skrive** | skriver | skrev | har skrevet | pisać |
 | **å lese** | leser | leste | har lest | czytać |
 
-### Czasowniki z podwójnymi formami
+## Kompletna lista czasowników nieregularnych
 
-| Bezokolicznik | Teraźniejszość | Przeszłość | Perfektum | Znaczenie |
-|---------------|----------------|------------|-----------|-----------|
-| **å bli** | blir | ble | har blitt | zostać |
+*Na podstawie materiałów z Lekcji 18 - Dodatek*
+
+| Bezokolicznik | Czas teraźniejszy | Czas przeszły | Perfektum | Znaczenie |
+|---------------|-------------------|---------------|-----------|-----------|
+| **å be** | ber | ba | har bedt | prosić/modlić się |
+| **å bite** | biter | bet | har bitt | gryźć |
+| **å bli** | blir | ble | har blitt | zostać/stać się |
+| **å brenne** | brenner | brant | har brent | palić się |
+| **å bringe** | bringer | brakte | har brakt | przynosić |
+| **å dra** | drar | dro(g) | har dratt | jechać/podróżować |
+| **å drikke** | drikker | drakk | har drukket | pić |
 | **å dø** | dør | døde | har dødd | umrzeć |
-| **å le** | ler | lo | har ledd | śmiać się |
+| **å falle** | faller | falt | har falt | spadać |
+| **å finne** | finner | fant | har funnet | znaleźć |
+| **å fly** | flyr | fløy | har fløyet | lecieć |
+| **å forlate** | forlater | forlot | har forlatt | opuszczać |
+| **å forstå** | forstår | forsto | har forstått | rozumieć |
+| **å fortelle** | forteller | fortalte | har fortalt | opowiadać |
+| **å fortsette** | fortsetter | fortsatte | har fortsatt | kontynuować |
+| **å forsvinne** | forsvinner | forsvant | har forsvunnet | znikać |
+| **å fryse** | fryser | frøs | har frosset | marznąć |
+| **å få** | får | fikk | har fått | dostawać/otrzymywać |
+| **å gi** | gir | ga(v) | har gitt | dawać |
+| **å gjelde** | gjelder | gjaldt | har gjeldt | dotyczyć/obowiązywać |
+| **å gjøre** | gjør | gjorde | har gjort | robić |
+| **å gå** | går | gikk | har gått | iść/chodzić |
 | **å gråte** | gråter | gråt | har grått | płakać |
+| **å ha** | har | hadde | har hatt | mieć |
+| **å hete** | heter | het | har hett | nazywać się |
+| **å hjelpe** | hjelper | hjalp | har hjulpet | pomagać |
+| **å komme** | kommer | kom | har kommet | przychodzić |
+| **å la** | lar | lot | har latt | pozwalać |
+| **å le** | ler | lo | har ledd | śmiać się |
+| **å legge** | legger | la | har lagt | kłaść/położyć |
+| **å lide** | lider | led | har lidd | cierpieć |
+| **å ligge** | ligger | lå | har ligget | leżeć |
+| **å lyve** | lyver | løy | har løyet | kłamać |
+| **å løpe** | løper | løp | har løpt | biegać |
+| **å møte** | møter | møtte | har møtt | spotykać |
+| **å nyse** | nyser | nøs | har nyst | kichać |
+| **å se** | ser | så | har sett | widzieć |
+| **å selge** | selger | solgte | har solgt | sprzedawać |
+| **å sette** | setter | satte | har satt | stawiać/umieszczać |
+| **å si** | sier | sa | har sagt | mówić |
+| **å sitte** | sitter | satt | har sittet | siedzieć |
+| **å skjære** | skjærer | skar | har skåret | ciąć |
+| **å skrive** | skriver | skrev | har skrevet | pisać |
+| **å skyte** | skyter | skjøt | har skutt | strzelać |
+| **å slå** | slår | slo | har slått | uderzać/bić |
+| **å sove** | sover | sov | har sovet | spać |
+| **å spørre** | spør | spurte | har spurt | pytać |
+| **å stjele** | stjeler | stjal | har stjålet | kraść |
+| **å stå** | står | sto(d) | har stått | stać |
+| **å synge** | synger | sang | har sunget | śpiewać |
+| **å ta** | tar | tok | har tatt | brać |
+| **å treffe** | treffer | traff | har truffet | spotykać/trafiać |
+| **å tvinge** | tvinger | tvang | har tvunget | zmuszać |
+| **å velge** | velger | valgte | har valgt | wybierać |
+| **å vinne** | vinner | vant | har vunnet | wygrywać |
+| **å vite** | vet | visste | har visst | wiedzieć |
+| **å være** | er | var | har vært | być |
 
 ## Wzorce nieregularności
 
@@ -126,6 +181,13 @@ Czasowniki nieregularne to czasowniki, które nie odmieniają się według stand
 - Nieprawidłowe formy perfektum
 - Zapominanie o **har** w perfektum
 - Mylenie podobnych czasowników
+
+### Plan nauki czasowników nieregularnych
+**Tydzień 1**: Naucz się 10 najważniejszych (być, mieć, iść, etc.)
+**Tydzień 2**: Dodaj czasowniki ruchu (dra, fly, løpe, etc.)
+**Tydzień 3**: Czasowniki poznawcze (vite, finne, forstå, etc.)
+**Tydzień 4**: Czasowniki czynności (spise, drikke, sove, etc.)
+**Tydzień 5-8**: Stopniowo dodawaj pozostałe z kompletnej listy
 
 ---
 **Zobacz również:**
