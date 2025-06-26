@@ -797,8 +797,8 @@
             // Use Web Speech API for pronunciation (if available)
             if ('speechSynthesis' in window) {
                 const utterance = new SpeechSynthesisUtterance(currentWord.word);
-                utterance.lang = 'no-NO';
-                utterance.rate = 0.7;
+                utterance.lang = 'nb-NO';
+                utterance.rate = 1;
                 utterance.pitch = 1;
                 
                 utterance.onend = () => {
