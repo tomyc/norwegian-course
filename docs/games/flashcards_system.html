@@ -676,8 +676,8 @@
             const card = currentDeck[currentCardIndex];
             if ('speechSynthesis' in window) {
                 const utterance = new SpeechSynthesisUtterance(card.no);
-                utterance.lang = 'no-NO';
-                utterance.rate = 0.8;
+                utterance.lang = 'nb-NO';
+                utterance.rate = 1;
                 speechSynthesis.speak(utterance);
             } else {
                 alert(`Wymowa: ${card.pron}`);
