@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gra - Liczby i godziny norweskie</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+        
+        .game-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .game-header {
+            background: linear-gradient(45deg, #FF6B6B, #4ECDC4);
+            color: white;
+            padding: 30px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .game-header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        .game-header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+        
+        .game-stats {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 20px;
+        }
+        
+        .stat-item {
+            background: rgba(255,255,255,0.2);
+            padding: 10px 15px;
+            border-radius: 15px;
+            text-align: center;
+        }
+        
+        .stat-value {
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+        
+        .stat-label {
+            font-size: 0.8em;
+            opacity: 0.9;
+        }
+        
+        .game-modes {
+            padding: 30px;
+            background: #f8f9fa;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .mode-selector {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .mode-btn {
+            padding: 15px 30px;
+            border: 3px solid #4ECDC4;
+            background: white;
+            color: #4ECDC4;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1.1em;
+            font-weight: bold;
+        }
+        
+        .mode-btn.active {
+            background: #4ECDC4;
+            color: white;
+            transform: scale(1.05);
+        }
+        
+        .mode-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(78, 205, 196, 0.3);
+        }
+        
+        .difficulty-selector {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+        
+        .difficulty-btn {
+            padding: 10px 20px;
+            border: 2px solid #666;
+            background: white;
+            color: #666;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .difficulty-btn.active {
+            background: #666;
+            color: white;
+        }
+        
+        .game-area {
+            padding: 40px;
+            min-height: 400px;
+            text-align: center;
+        }
+        
+        .question-container {
+            margin-bottom: 30px;
+        }
+        
+        .question {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            color: #333;
+            background: linear-gradient(45deg, #4ECDC4, #44A08D);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: bold;
+        }
+        
+        .clock {
+            width: 200px;
+            height: 200px;
+            border: 8px solid #4ECDC4;
+            border-radius: 50%;
+            margin: 20px auto;
+            position: relative;
+            background: white;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .clock-center {
+            width: 10px;
+            height: 10px;
+            background: #333;
+            border-radius: 50%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 3;
+        }
+        
+        .clock-hand {
+            position: absolute;
+            background: #333;
+            transform-origin: bottom center;
+            border-radius: 2px;
+        }
+        
+        .hour-hand {
+            width: 4px;
+            height: 60px;
+            top: 40px;
+            left: 50%;
+            margin-left: -2px;
+        }
+        
+        .minute-hand {
+            width: 2px;
+            height: 80px;
+            top: 20px;
+            left: 50%;
+            margin-left: -1px;
+        }
+        
+        .clock-numbers {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .clock-number {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: #666;
+        }
+        
+        .options-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .option {
+            padding: 20px;
+            border: 3px solid #e0e0e0;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1.2em;
+            background: white;
+        }
+        
+        .option:hover {
+            border-color: #4ECDC4;
+            background: #f8fffe;
+            transform: translateY(-2px);
+        }
+        
+        .option.selected {
+            border-color: #4ECDC4;
+            background: #4ECDC4;
+            color: white;
+        }
+        
+        .option.correct {
+            border-color: #2ECC71;
+            background: #2ECC71;
+            color: white;
+            animation: pulse 0.5s;
+        }
+        
+        .option.incorrect {
+            border-color: #E74C3C;
+            background: #E74C3C;
+            color: white;
+            animation: shake 0.5s;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
+        }
+        
+        .feedback {
+            margin: 20px 0;
+            padding: 15px;
+            border-radius: 10px;
+            font-size: 1.1em;
+            display: none;
+        }
+        
+        .feedback.correct {
+            background: #d4edda;
+            border: 1px solid #c3e6cb;
+            color: #155724;
+        }
+        
+        .feedback.incorrect {
+            background: #f8d7da;
+            border: 1px solid #f5c6cb;
+            color: #721c24;
+        }
+        
+        .game-controls {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        .control-btn {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 25px;
+            font-size: 1.1em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(45deg, #4ECDC4, #44A08D);
+            color: white;
+        }
+        
+        .btn-secondary {
+            background: #f0f0f0;
+            color: #666;
+        }
+        
+        .control-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        .control-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+        
+        .game-over {
+            text-align: center;
+            padding: 40px;
+            display: none;
+        }
+        
+        .final-score {
+            font-size: 3em;
+            background: linear-gradient(45deg, #4ECDC4, #44A08D);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        
+        .achievement {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            color: #856404;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 20px 0;
+            display: inline-block;
+        }
+        
+        .timer {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #FF6B6B;
+            margin-bottom: 20px;
+        }
+        
+        .streak {
+            background: linear-gradient(45deg, #FFD700, #FFA500);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            display: inline-block;
+            margin: 10px;
+            font-weight: bold;
+        }
+        
+        @media (max-width: 768px) {
+            .mode-selector {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .clock {
+                width: 150px;
+                height: 150px;
+            }
+            
+            .question {
+                font-size: 2em;
+            }
+            
+            .options-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .game-stats {
+                position: static;
+                justify-content: center;
+                margin-top: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="game-container">
+        <div class="game-header">
+            <h1>🎮 Gra Liczby & Czas 🇳🇴</h1>
+            <p>Interaktywna nauka liczb i godzin po norwesku</p>
+            
+            <div class="game-stats">
+                <div class="stat-item">
+                    <div class="stat-value" id="score">0</div>
+                    <div class="stat-label">Punkty</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value" id="streak">0</div>
+                    <div class="stat-label">Seria</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value" id="level">1</div>
+                    <div class="stat-label">Poziom</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="game-modes">
+            <div class="mode-selector">
+                <button class="mode-btn active" data-mode="numbers">🔢 Liczby</button>
+                <button class="mode-btn" data-mode="time">🕐 Godziny</button>
+                <button class="mode-btn" data-mode="mixed">🎯 Mieszane</button>
+            </div>
+            
+            <div class="difficulty-selector">
+                <button class="difficulty-btn active" data-difficulty="easy">Łatwy</button>
+                <button class="difficulty-btn" data-difficulty="medium">Średni</button>
+                <button class="difficulty-btn" data-difficulty="hard">Trudny</button>
+            </div>
+        </div>
+        
+        <div class="game-area">
+            <div class="timer" id="timer" style="display: none;">⏰ 30</div>
+            
+            <div class="question-container">
+                <div class="question" id="question">Jak powiedzieć "5" po norwesku?</div>
+                
+                <!-- Clock for time questions -->
+                <div class="clock" id="clock" style="display: none;">
+                    <div class="clock-numbers">
+                        <div class="clock-number" style="top: 5px; left: 50%; transform: translateX(-50%);">12</div>
+                        <div class="clock-number" style="top: 50%; right: 5px; transform: translateY(-50%);">3</div>
+                        <div class="clock-number" style="bottom: 5px; left: 50%; transform: translateX(-50%);">6</div>
+                        <div class="clock-number" style="top: 50%; left: 5px; transform: translateY(-50%);">9</div>
+                    </div>
+                    <div class="hour-hand" id="hourHand"></div>
+                    <div class="minute-hand" id="minuteHand"></div>
+                    <div class="clock-center"></div>
+                </div>
+            </div>
+            
+            <div class="options-container" id="optionsContainer">
+                <!-- Options will be generated here -->
+            </div>
+            
+            <div class="feedback" id="feedback"></div>
+            
+            <div class="game-controls">
+                <button class="control-btn btn-secondary" onclick="skipQuestion()">⏭️ Pomiń</button>
+                <button class="control-btn btn-primary" onclick="nextQuestion()" id="nextBtn" disabled>Następne</button>
+                <button class="control-btn btn-secondary" onclick="restartGame()">🔄 Restart</button>
+            </div>
+        </div>
+        
+        <div class="game-over" id="gameOver">
+            <h2>🎉 Koniec gry!</h2>
+            <div class="final-score" id="finalScore">0</div>
+            <div class="achievement" id="achievement">Świetna gra!</div>
+            <div class="game-controls">
+                <button class="control-btn btn-primary" onclick="restartGame()">🎮 Graj ponownie</button>
+                <button class="control-btn btn-secondary" onclick="changeMode()">🔄 Zmień tryb</button>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Game data
+        const numbers = {
+            easy: [
+                { no: 'en/ett', pl: '1', value: 1 },
+                { no: 'to', pl: '2', value: 2 },
+                { no: 'tre', pl: '3', value: 3 },
+                { no: 'fire', pl: '4', value: 4 },
+                { no: 'fem', pl: '5', value: 5 },
+                { no: 'seks', pl: '6', value: 6 },
+                { no: 'sju', pl: '7', value: 7 },
+                { no: 'åtte', pl: '8', value: 8 },
+                { no: 'ni', pl: '9', value: 9 },
+                { no: 'ti', pl: '10', value: 10 }
+            ],
+            medium: [
+                { no: 'elleve', pl: '11', value: 11 },
+                { no: 'tolv', pl: '12', value: 12 },
+                { no: 'tretten', pl: '13', value: 13 },
+                { no: 'fjorten', pl: '14', value: 14 },
+                { no: 'femten', pl: '15', value: 15 },
+                { no: 'seksten', pl: '16', value: 16 },
+                { no: 'sytten', pl: '17', value: 17 },
+                { no: 'atten', pl: '18', value: 18 },
+                { no: 'nitten', pl: '19', value: 19 },
+                { no: 'tjue', pl: '20', value: 20 }
+            ],
+            hard: [
+                { no: 'tjueen', pl: '21', value: 21 },
+                { no: 'trettien', pl: '31', value: 31 },
+                { no: 'førtifem', pl: '45', value: 45 },
+                { no: 'femtisju', pl: '57', value: 57 },
+                { no: 'sekstini', pl: '69', value: 69 },
+                { no: 'åttiseks', pl: '86', value: 86 },
+                { no: 'nittito', pl: '92', value: 92 },
+                { no: 'hundre', pl: '100', value: 100 }
+            ]
+        };
+        
+        const timeExpressions = {
+            easy: [
+                { time: '9:00', no: 'ni', pl: 'dziewiąta' },
+                { time: '3:30', no: 'halv fire', pl: 'wpół do czwartej' },
+                { time: '6:15', no: 'kvart over seks', pl: 'kwadrans po szóstej' },
+                { time: '8:45', no: 'kvart på ni', pl: 'kwadrans przed dziewiątą' }
+            ],
+            medium: [
+                { time: '2:10', no: 'ti over to', pl: 'dziesięć po drugiej' },
+                { time: '5:25', no: 'fem på halv seks', pl: 'pięć przed wpół do szóstej' },
+                { time: '7:35', no: 'fem over halv åtte', pl: 'pięć po wpół do ósmej' },
+                { time: '11:50', no: 'ti på tolv', pl: 'dziesięć przed dwunastą' }
+            ],
+            hard: [
+                { time: '1:23', no: 'syv på halv to', pl: 'siedem przed wpół do drugiej' },
+                { time: '4:37', no: 'syv over halv fem', pl: 'siedem po wpół do piątej' },
+                { time: '10:42', no: 'atten over halv elleve', pl: 'osiemnaście po wpół do jedenastej' },
+                { time: '6:58', no: 'to på sju', pl: 'dwa przed siódmą' }
+            ]
+        };
+        
+        // Game state
+        let gameState = {
+            mode: 'numbers',
+            difficulty: 'easy',
+            score: 0,
+            streak: 0,
+            level: 1,
+            currentQuestion: null,
+            correctAnswer: null,
+            timeLeft: 30,
+            timerInterval: null,
+            questionsAnswered: 0,
+            correctAnswers: 0
+        };
+        
+        function initGame() {
+            setupEventListeners();
+            generateQuestion();
+        }
+        
+        function setupEventListeners() {
+            // Mode buttons
+            document.querySelectorAll('.mode-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    document.querySelectorAll('.mode-btn').forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    gameState.mode = this.dataset.mode;
+                    generateQuestion();
+                });
+            });
+            
+            // Difficulty buttons
+            document.querySelectorAll('.difficulty-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    document.querySelectorAll('.difficulty-btn').forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    gameState.difficulty = this.dataset.difficulty;
+                    generateQuestion();
+                });
+            });
+        }
+        
+        function generateQuestion() {
+            hideElements();
+            
+            if (gameState.mode === 'numbers') {
+                generateNumberQuestion();
+            } else if (gameState.mode === 'time') {
+                generateTimeQuestion();
+            } else {
+                // Mixed mode
+                Math.random() > 0.5 ? generateNumberQuestion() : generateTimeQuestion();
+            }
+            
+            document.getElementById('nextBtn').disabled = true;
+            document.getElementById('feedback').style.display = 'none';
+        }
+        
+        function generateNumberQuestion() {
+            const nums = numbers[gameState.difficulty];
+            const randomNum = nums[Math.floor(Math.random() * nums.length)];
+            
+            // Generate question types
+            const questionTypes = [
+                { type: 'toNorwegian', q: `Jak powiedzieć "${randomNum.pl}" po norwesku?`, correct: randomNum.no },
+                { type: 'toPolish', q: `Co znaczy "${randomNum.no}"?`, correct: randomNum.pl },
+                { type: 'math', q: `Ile to jest po norwesku: ${randomNum.value}?`, correct: randomNum.no }
+            ];
+            
+            const questionType = questionTypes[Math.floor(Math.random() * questionTypes.length)];
+            document.getElementById('question').textContent = questionType.q;
+            gameState.correctAnswer = questionType.correct;
+            
+            generateNumberOptions(questionType.type, randomNum);
+        }
+        
+        function generateNumberOptions(type, correctNum) {
+            const options = [];
+            const allNums = [].concat(numbers.easy, numbers.medium, numbers.hard);
+            
+            // Add correct answer
+            options.push(type === 'toPolish' ? correctNum.pl : correctNum.no);
+            
+            // Add wrong answers
+            while (options.length < 4) {
+                const randomNum = allNums[Math.floor(Math.random() * allNums.length)];
+                const wrongAnswer = type === 'toPolish' ? randomNum.pl : randomNum.no;
+                if (!options.includes(wrongAnswer)) {
+                    options.push(wrongAnswer);
+                }
+            }
+            
+            shuffleArray(options);
+            createOptions(options);
+        }
+        
+        function generateTimeQuestion() {
+            const times = timeExpressions[gameState.difficulty];
+            const randomTime = times[Math.floor(Math.random() * times.length)];
+            
+            const questionTypes = [
+                { type: 'timeToNorwegian', q: `Jak powiedzieć "${randomTime.time}" po norwesku?`, correct: randomTime.no },
+                { type: 'timeToPolish', q: `Co znaczy "${randomTime.no}"?`, correct: randomTime.pl },
+                { type: 'showClock', q: `Która godzina jest pokazana na zegarze?`, correct: randomTime.no }
+            ];
+            
+            const questionType = questionTypes[Math.floor(Math.random() * questionTypes.length)];
+            document.getElementById('question').textContent = questionType.q;
+            gameState.correctAnswer = questionType.correct;
+            
+            if (questionType.type === 'showClock') {
+                showClock(randomTime.time);
+            }
+            
+            generateTimeOptions(questionType.type, randomTime);
+        }
+        
+        function generateTimeOptions(type, correctTime) {
+            const options = [];
+            const allTimes = [].concat(timeExpressions.easy, timeExpressions.medium, timeExpressions.hard);
+            
+            // Add correct answer
+            if (type === 'timeToPolish') {
+                options.push(correctTime.pl);
+            } else {
+                options.push(correctTime.no);
+            }
+            
+            // Add wrong answers
+            while (options.length < 4) {
+                const randomTime = allTimes[Math.floor(Math.random() * allTimes.length)];
+                const wrongAnswer = type === 'timeToPolish' ? randomTime.pl : randomTime.no;
+                if (!options.includes(wrongAnswer)) {
+                    options.push(wrongAnswer);
+                }
+            }
+            
+            shuffleArray(options);
+            createOptions(options);
+        }
+        
+        function showClock(timeStr) {
+            const [hours, minutes] = timeStr.split(':').map(Number);
+            const clock = document.getElementById('clock');
+            const hourHand = document.getElementById('hourHand');
+            const minuteHand = document.getElementById('minuteHand');
+            
+            clock.style.display = 'block';
+            
+            // Calculate angles
+            const minuteAngle = (minutes * 6) - 90; // 6 degrees per minute
+            const hourAngle = ((hours % 12) * 30 + minutes * 0.5) - 90; // 30 degrees per hour + minute adjustment
+            
+            hourHand.style.transform = `rotate(${hourAngle}deg)`;
+            minuteHand.style.transform = `rotate(${minuteAngle}deg)`;
+        }
+        
+        function createOptions(options) {
+            const container = document.getElementById('optionsContainer');
+            container.innerHTML = '';
+            
+            options.forEach(option => {
+                const btn = document.createElement('div');
+                btn.className = 'option';
+                btn.textContent = option;
+                btn.onclick = () => selectOption(btn, option);
+                container.appendChild(btn);
+            });
+        }
+        
+        function selectOption(element, answer) {
+            // Remove previous selections
+            document.querySelectorAll('.option').forEach(opt => {
+                opt.classList.remove('selected', 'correct', 'incorrect');
+                opt.onclick = null;
+            });
+            
+            const isCorrect = answer === gameState.correctAnswer;
+            
+            if (isCorrect) {
+                element.classList.add('correct');
+                showFeedback(true, 'Brawo! Prawidłowa odpowiedź! 🎉');
+                updateScore(true);
+            } else {
+                element.classList.add('incorrect');
+                // Show correct answer
+                document.querySelectorAll('.option').forEach(opt => {
+                    if (opt.textContent === gameState.correctAnswer) {
+                        opt.classList.add('correct');
+                    }
+                });
+                showFeedback(false, `Nieprawidłowo. Prawidłowa odpowiedź to: ${gameState.correctAnswer}`);
+                updateScore(false);
+            }
+            
+            document.getElementById('nextBtn').disabled = false;
+            gameState.questionsAnswered++;
+            
+            if (gameState.questionsAnswered % 10 === 0) {
+                levelUp();
+            }
+        }
+        
+        function showFeedback(isCorrect, message) {
+            const feedback = document.getElementById('feedback');
+            feedback.textContent = message;
+            feedback.className = `feedback ${isCorrect ? 'correct' : 'incorrect'}`;
+            feedback.style.display = 'block';
+        }
+        
+        function updateScore(isCorrect) {
+            if (isCorrect) {
+                gameState.streak++;
+                gameState.correctAnswers++;
+                
+                // Bonus points for streak
+                let points = 10;
+                if (gameState.streak >= 5) points += 5;
+                if (gameState.streak >= 10) points += 10;
+                if (gameState.difficulty === 'medium') points *= 1.5;
+                if (gameState.difficulty === 'hard') points *= 2;
+                
+                gameState.score += Math.round(points);
+            } else {
+                gameState.streak = 0;
+            }
+            
+            updateUI();
+        }
+        
+        function levelUp() {
+            gameState.level++;
+            showFeedback(true, `🎊 Poziom ${gameState.level}! Świetna robota!`);
+        }
+        
+        function updateUI() {
+            document.getElementById('score').textContent = gameState.score;
+            document.getElementById('streak').textContent = gameState.streak;
+            document.getElementById('level').textContent = gameState.level;
+        }
+        
+        function nextQuestion() {
+            generateQuestion();
+        }
+        
+        function skipQuestion() {
+            gameState.streak = 0;
+            updateUI();
+            generateQuestion();
+        }
+        
+        function restartGame() {
+            gameState = {
+                mode: gameState.mode,
+                difficulty: gameState.difficulty,
+                score: 0,
+                streak: 0,
+                level: 1,
+                currentQuestion: null,
+                correctAnswer: null,
+                questionsAnswered: 0,
+                correctAnswers: 0
+            };
+            
+            updateUI();
+            hideElements();
+            document.getElementById('gameOver').style.display = 'none';
+            generateQuestion();
+        }
+        
+        function changeMode() {
+            document.getElementById('gameOver').style.display = 'none';
+            restartGame();
+        }
+        
+        function hideElements() {
+            document.getElementById('clock').style.display = 'none';
+            document.getElementById('feedback').style.display = 'none';
+        }
+        
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+        
+        // Keyboard shortcuts
+        document.addEventListener('keydown', function(e) {
+            if (e.key >= '1' && e.key <= '4') {
+                const options = document.querySelectorAll('.option');
+                const index = parseInt(e.key) - 1;
+                if (options[index] && options[index].onclick) {
+                    options[index].click();
+                }
+            } else if (e.key === ' ' || e.key === 'Enter') {
+                e.preventDefault();
+                if (!document.getElementById('nextBtn').disabled) {
+                    nextQuestion();
+                }
+            }
+        });
+        
+        // Initialize game
+        document.addEventListener('DOMContentLoaded', initGame);
+    </script>
+</body>
+</html>

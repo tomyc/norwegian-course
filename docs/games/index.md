@@ -4,7 +4,40 @@ Kolekcja interaktywnych narzędzi do nauki języka norweskiego.
 
 ## 🎮 Dostępne gry i ćwiczenia
 
-### [🧠 Memory Game - Gra pamięciowa](../games/memory-game.html)
+### [🔢 Numbers & Time Game - Liczby i godziny](numbers_time_game.html)
+Interaktywna gra do nauki liczb i godzin po norwesku z trzema trybami gry.
+
+**Funkcje:**
+- 3 tryby gry: Liczby, Godziny, Mieszane
+- 3 poziomy trudności (łatwy, średni, trudny)
+- System punktacji z bonusami za serie
+- Zegar analogowy do nauki godzin
+- Statystyki i poziomy
+- Skróty klawiszowe (1-4 dla odpowiedzi, Spacja/Enter)
+
+### [🇳🇴 Flashcards - Karty do nauki słownictwa](flashcards_system.html)
+System kart do nauki słownictwa norweskiego z różnymi kategoriami.
+
+**Funkcje:**
+- 6 kategorii słownictwa (podstawowe, rodzina, kolory, liczby, jedzenie, wszystkie)
+- Interaktywne karty z animacją obrotu
+- Wymowa z syntezą mowy
+- System oceny (łatwe/trudne)
+- Statystyki postępu
+- Skróty klawiszowe (Spacja - obrót, strzałki - nawigacja)
+
+### [📝 Quiz - Lekcja 1: Podstawy](quiz_lekcja_1.html)
+Interaktywny quiz sprawdzający wiedzę z pierwszej lekcji norweskiego.
+
+**Funkcje:**
+- 10 pytań z podstaw języka norweskiego
+- Różne typy pytań (słownictwo, gramatyka, liczby)
+- Szczegółowe wyjaśnienia do każdej odpowiedzi
+- System oceny z rekomendacjami
+- Analiza słabych punktów
+- Możliwość powtórzenia quizu
+
+### [🧠 Memory Game - Gra pamięciowa](memory-game.html)
 Dopasuj norweskie słowa z polskimi tłumaczeniami. Różne kategorie słownictwa i poziomy trudności.
 
 **Funkcje:**
@@ -14,7 +47,7 @@ Dopasuj norweskie słowa z polskimi tłumaczeniami. Różne kategorie słownictw
 - Podpowiedzi i statystyki
 - Responsywny design
 
-### [🔊 Pronunciation Trainer - Trener wymowy](../games/pronunciation_trainer.html)
+### [🔊 Pronunciation Trainer - Trener wymowy](pronunciation-trainer.html)
 Ćwicz poprawną wymowę norweskich liter i słów z funkcją nagrywania.
 
 **Funkcje:**
@@ -24,9 +57,6 @@ Dopasuj norweskie słowa z polskimi tłumaczeniami. Różne kategorie słownictw
 - Analiza wymowy
 - Wskazówki fonetyczne
 
-### 📝 Quiz Generator - Generator quizów
-Generator quizów z materiału z lekcji (w przygotowaniu).
-
 ### 🎯 Word Matching - Dopasowywanie słów
 Interaktywne ćwiczenia dopasowywania słów do obrazków (w przygotowaniu).
 
@@ -34,14 +64,32 @@ Interaktywne ćwiczenia dopasowywania słów do obrazków (w przygotowaniu).
 
 ## 💡 Instrukcje instalacji
 
-Aby dodać interaktywne gry do portalu:
+Aby używać interaktywnych gier:
 
-1. **Utwórz folder `games/`** w katalogu `docs/`
-2. **Skopiuj pliki HTML** gier do tego folderu
-3. **Dodaj linki** na tej stronie lub w nawigacji
-4. **Upewnij się** że pliki są dostępne po zbudowaniu portalu
+1. **Pobierz pliki HTML** z tej kolekcji
+2. **Otwórz w przeglądarce** - gry działają offline
+3. **Umieść w folderze `games/`** jeśli używasz w portalu MkDocs
+4. **Upewnij się** że wszystkie pliki są dostępne
 
 ## 🎹 Skróty klawiszowe
+
+**Numbers & Time Game:**
+- `1-4` - Wybór odpowiedzi
+- `Spacja/Enter` - Następne pytanie
+- `Escape` - Restart gry
+
+**Flashcards:**
+- `Spacja/Enter` - Obrót karty
+- `→` - Następna karta
+- `←` - Poprzednia karta
+- `1` - Oznacz jako trudne
+- `2` - Oznacz jako łatwe
+
+**Quiz:**
+- `1-4` - Wybór odpowiedzi
+- `Enter` - Sprawdź odpowiedź
+- `→` - Następne pytanie
+- `←` - Poprzednie pytanie
 
 **Memory Game:**
 - `Spacja` - Pauza/Wznów
@@ -55,5 +103,36 @@ Aby dodać interaktywne gry do portalu:
 - `←` - Poprzednie słowo
 
 ---
+
+## 📚 Dostępne kategorie słownictwa
+
+### Podstawowe (20 słów)
+Podstawowe zwroty, zaimki, czasowniki
+
+### Rodzina (12 słów)
+Członkowie rodziny, pokrewieństwo
+
+### Kolory (11 słów)
+Podstawowe kolory po norwesku
+
+### Liczby (14 słów)
+Liczby od 1 do 100
+
+### Jedzenie (12 słów)
+Podstawowe słownictwo kulinarne
+
+---
+
+## 🎯 Wskazówki do nauki
+
+1. **Zacznij od flashcards** - poznaj słownictwo
+2. **Przećwicz liczby i godziny** w dedykowanej grze
+3. **Sprawdź wiedzę** quizem z lekcji 1
+4. **Użyj Memory Game** do utrwalenia
+5. **Ćwicz wymowę** z trenerem wymowy
+
+---
+
+**Powodzenia w nauce norweskiego! 🇳🇴**
 
 **Wróć do:** [Główna strona ćwiczeń](../cwiczenia/)

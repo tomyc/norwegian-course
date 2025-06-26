@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz - Lekcja 1: Podstawy</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .quiz-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .quiz-header {
+            background: linear-gradient(45deg, #FF6B6B, #4ECDC4);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .quiz-header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        .quiz-header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+        
+        .progress-bar {
+            height: 6px;
+            background: #f0f0f0;
+            position: relative;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #FF6B6B, #4ECDC4);
+            width: 0%;
+            transition: width 0.5s ease;
+        }
+        
+        .quiz-content {
+            padding: 40px;
+        }
+        
+        .question-container {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        .question-container.active {
+            display: block;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .question-number {
+            color: #666;
+            font-size: 0.9em;
+            margin-bottom: 10px;
+        }
+        
+        .question {
+            font-size: 1.5em;
+            margin-bottom: 30px;
+            color: #333;
+            line-height: 1.4;
+        }
+        
+        .options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        
+        .option {
+            padding: 15px 20px;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1.1em;
+            text-align: center;
+        }
+        
+        .option:hover {
+            border-color: #4ECDC4;
+            background: #f8fffe;
+            transform: translateY(-2px);
+        }
+        
+        .option.selected {
+            border-color: #4ECDC4;
+            background: #4ECDC4;
+            color: white;
+        }
+        
+        .option.correct {
+            border-color: #2ECC71;
+            background: #2ECC71;
+            color: white;
+        }
+        
+        .option.incorrect {
+            border-color: #E74C3C;
+            background: #E74C3C;
+            color: white;
+        }
+        
+        .explanation {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 12px;
+            margin: 20px 0;
+            display: none;
+        }
+        
+        .explanation.show {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        .explanation h4 {
+            color: #2ECC71;
+            margin-bottom: 10px;
+        }
+        
+        .buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+        }
+        
+        .btn {
+            padding: 12px 30px;
+            border: none;
+            border-radius: 25px;
+            font-size: 1.1em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(45deg, #4ECDC4, #44A08D);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(78, 205, 196, 0.4);
+        }
+        
+        .btn-secondary {
+            background: #f0f0f0;
+            color: #666;
+        }
+        
+        .btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+        
+        .results {
+            text-align: center;
+            display: none;
+        }
+        
+        .results.show {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        .score-circle {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin: 0 auto 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5em;
+            font-weight: bold;
+            color: white;
+        }
+        
+        .score-excellent { background: linear-gradient(45deg, #2ECC71, #27AE60); }
+        .score-good { background: linear-gradient(45deg, #3498DB, #2980B9); }
+        .score-average { background: linear-gradient(45deg, #F39C12, #E67E22); }
+        .score-poor { background: linear-gradient(45deg, #E74C3C, #C0392B); }
+        
+        .recommendations {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 12px;
+            margin-top: 20px;
+            text-align: left;
+        }
+        
+        .flag {
+            font-size: 1.5em;
+            margin: 0 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="quiz-container">
+        <div class="quiz-header">
+            <h1>🇳🇴 Quiz Norweskiego 🇵🇱</h1>
+            <p>Lekcja 1: Podstawy języka norweskiego</p>
+        </div>
+        
+        <div class="progress-bar">
+            <div class="progress-fill" id="progressFill"></div>
+        </div>
+        
+        <div class="quiz-content">
+            <!-- Pytanie 1 -->
+            <div class="question-container active" data-question="0">
+                <div class="question-number">Pytanie 1 z 10</div>
+                <div class="question">Jak się nazywasz po norwesku?</div>
+                <div class="options">
+                    <div class="option" data-answer="a">Hvor bor du?</div>
+                    <div class="option" data-answer="b">Hva heter du?</div>
+                    <div class="option" data-answer="c">Hvor gammel er du?</div>
+                    <div class="option" data-answer="d">Hvordan går det?</div>
+                </div>
+                <div class="explanation">
+                    <h4>Wyjaśnienie:</h4>
+                    <p><strong>"Hva heter du?"</strong> to standardowe pytanie o imię w języku norweskim. Odpowiadamy: "Jeg heter [imię]"</p>
+                </div>
+            </div>
+            
+            <!-- Pytanie 2 -->
+            <div class="question-container" data-question="1">
+                <div class="question-number">Pytanie 2 z 10</div>
+                <div class="question">Które litery są specyficzne dla norweskiego?</div>
+                <div class="options">
+                    <div class="option" data-answer="a">ä, ö, ü</div>
+                    <div class="option" data-answer="b">æ, ø, å</div>
+                    <div class="option" data-answer="c">ą, ę, ć</div>
+                    <div class="option" data-answer="d">ß, ü, ö</div>
+                </div>
+                <div class="explanation">
+                    <h4>Wyjaśnienie:</h4>
+                    <p>Norweski ma trzy specjalne litery: <strong>æ</strong> (jak "e"), <strong>ø</strong> (jak "y" z zaokrąglonymi ustami), <strong>å</strong> (jak głębokie "o")</p>
+                </div>
+            </div>
+            
+            <!-- Pytanie 3 -->
+            <div class="question-container" data-question="2">
+                <div class="question-number">Pytanie 3 z 10</div>
+                <div class="question">Jak powiedzieć "7" po norwesku?</div>
+                <div class="options">
+                    <div class="option" data-answer="a">seks</div>
+                    <div class="option" data-answer="b">åtte</div>
+                    <div class="option" data-answer="c">sju</div>
+                    <div class="option" data-answer="d">ni</div>
+                </div>
+                <div class="explanation">
+                    <h4>Wyjaśnienie:</h4>
+                    <p><strong>"Sju"</strong> (lub "syv") to liczba 7. Inne opcje: seks=6, åtte=8, ni=9</p>
+                </div>
+            </div>
+            
+            <!-- Pytanie 4 -->
+            <div class="question-container" data-question="3">
+                <div class="question-number">Pytanie 4 z 10</div>
+                <div class="question">Rodzajnik dla słowa "mann" (mężczyzna) to:</div>
+                <div class="options">
+                    <div class="option" data-answer="a">en</div>
+                    <div class="option" data-answer="b">ei</div>
+                    <div class="option" data-answer="c">et</div>
+                    <div class="option" data-answer="d">der</div>
+                </div>
+                <div class="explanation">
+                    <h4>Wyjaśnienie:</h4>
+                    <p><strong>"en mann"</strong> - rodzajnik "en" używamy dla rzeczowników rodzaju męskiego</p>
+                </div>
+            </div>
+            
+            <!-- Pytanie 5 -->
+            <div class="question-container" data-question="4">
+                <div class="question-number">Pytanie 5 z 10</div>
+                <div class="question">Co znaczy "Hvordan går det?"</div>
+                <div class="options">
+                    <div class="option" data-answer="a">Ile masz lat?</div>
+                    <div class="option" data-answer="b">Skąd pochodzisz?</div>
+                    <div class="option" data-answer="c">Jak się masz?</div>
+                    <div class="option" data-answer="d">Co robisz?</div>
+                </div>
+                <div class="explanation">
+                    <h4>Wyjaśnienie:</h4>
+                    <p><strong>"Hvordan går det?"</strong> to popularne pytanie o samopoczucie. Odpowiadamy np. "Det går bra" (dobrze)</p>
+                </div>
+            </div>
+            
+            <!-- Pytanie 6 -->
+            <div class="question-container" data-question="5">
+                <div class="question-number">Pytanie 6 z 10</div>
+                <div class="question">Które słowo oznacza "woda"?</div>
+                <div class="options">
+                    <div class="option" data-answer="a">øl</div>
+                    <div class="option" data-answer="b">melk</div>
+                    <div class="option" data-answer="c">vann</div>
+                    <div class="option" data-answer="d">kaffe</div>
+                </div>
+                <div class="explanation">
+                    <h4>Wyjaśnienie:</h4>
+                    <p><strong>"et vann"</strong> to woda. Inne: øl=piwo, melk=mleko, kaffe=kawa</p>
+                </div>
+            </div>
+            
+            <!-- Pytanie 7 -->
+            <div class="question-container" data-question="6">
+                <div class="question-number">Pytanie 7 z 10</div>
+                <div class="question">Jak brzmi odpowiedź na "Det går bra"?</div>
+                <div class="options">
+                    <div class="option" data-answer="a">bardzo dobrze</div>
+                    <div class="option" data-answer="b">źle</div>
+                    <div class="option" data-answer="c">dobrze</div>
+                    <div class="option" data-answer="d">nie tak źle</div>
+                </div>
+                <div class="explanation">
+                    <h4>Wyjaśnienie:</h4>
+                    <p><strong>"Det går bra"</strong> oznacza "dobrze" - podstawowa pozytywna odpowiedź na pytanie o samopoczucie</p>
+                </div>
+            </div>
+            
+            <!-- Pytanie 8 -->
+            <div class="question-container" data-question="7">
+                <div class="question-number">Pytanie 8 z 10</div>
+                <div class="question">Co to jest "ei jente"?</div>
+                <div class="options">
+                    <div class="option" data-answer="a">chłopiec</div>
+                    <div class="option" data-answer="b">dziewczyna</div>
+                    <div class="option" data-answer="c">kobieta</div>
+                    <div class="option" data-answer="d">mężczyzna</div>
+                </div>
+                <div class="explanation">
+                    <h4>Wyjaśnienie:</h4>
+                    <p><strong>"ei jente"</strong> to dziewczyna. Używamy rodzajnika "ei" dla rzeczowników rodzaju żeńskiego</p>
+                </div>
+            </div>
+            
+            <!-- Pytanie 9 -->
+            <div class="question-container" data-question="8">
+                <div class="question-number">Pytanie 9 z 10</div>
+                <div class="question">Jak powiedzieć "Mieszkam w Polsce"?</div>
+                <div class="options">
+                    <div class="option" data-answer="a">Jeg kommer fra Polen</div>
+                    <div class="option" data-answer="b">Jeg bor i Polen</div>
+                    <div class="option" data-answer="c">Jeg går til Polen</div>
+                    <div class="option" data-answer="d">Jeg liker Polen</div>
+                </div>
+                <div class="explanation">
+                    <h4>Wyjaśnienie:</h4>
+                    <p><strong>"Jeg bor i Polen"</strong> - czasownik "å bo" oznacza mieszkać, "i" to w</p>
+                </div>
+            </div>
+            
+            <!-- Pytanie 10 -->
+            <div class="question-container" data-question="9">
+                <div class="question-number">Pytanie 10 z 10</div>
+                <div class="question">Jakie jest znaczenie "ikke"?</div>
+                <div class="options">
+                    <div class="option" data-answer="a">tak</div>
+                    <div class="option" data-answer="b">nie</div>
+                    <div class="option" data-answer="c">może</div>
+                    <div class="option" data-answer="d">bardzo</div>
+                </div>
+                <div class="explanation">
+                    <h4>Wyjaśnienie:</h4>
+                    <p><strong>"ikke"</strong> to słowo negacji w norweskim, oznacza "nie". Np. "Jeg snakker ikke tysk" (Nie mówię po niemiecku)</p>
+                </div>
+            </div>
+            
+            <!-- Wyniki -->
+            <div class="results">
+                <div class="score-circle" id="scoreCircle">
+                    <span id="scoreText">0/10</span>
+                </div>
+                <h2 id="resultTitle">Gratulacje!</h2>
+                <p id="resultMessage">Wspaniale radzisz sobie z podstawami norweskiego!</p>
+                
+                <div class="recommendations">
+                    <h3>📚 Rekomendacje:</h3>
+                    <ul id="recommendationsList">
+                        <li>Kontynuuj naukę z Lekcją 2</li>
+                    </ul>
+                </div>
+                
+                <div class="buttons">
+                    <button class="btn btn-secondary" onclick="restartQuiz()">🔄 Spróbuj ponownie</button>
+                    <button class="btn btn-primary" onclick="nextLesson()">➡️ Następna lekcja</button>
+                </div>
+            </div>
+            
+            <div class="buttons" id="navigationButtons">
+                <button class="btn btn-secondary" id="prevBtn" onclick="previousQuestion()" disabled>⬅️ Poprzednie</button>
+                <button class="btn btn-primary" id="nextBtn" onclick="nextQuestion()" disabled>Sprawdź odpowiedź</button>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        const questions = [
+            { correct: 'b', topic: 'podstawowe-zwroty' },
+            { correct: 'b', topic: 'alfabet' },
+            { correct: 'c', topic: 'liczebniki' },
+            { correct: 'a', topic: 'rodzajniki' },
+            { correct: 'c', topic: 'podstawowe-zwroty' },
+            { correct: 'c', topic: 'słownictwo' },
+            { correct: 'c', topic: 'podstawowe-zwroty' },
+            { correct: 'b', topic: 'słownictwo' },
+            { correct: 'b', topic: 'czasowniki' },
+            { correct: 'b', topic: 'słownictwo' }
+        ];
+        
+        let currentQuestion = 0;
+        let selectedAnswer = null;
+        let score = 0;
+        let answered = false;
+        let results = [];
+        
+        function updateProgress() {
+            const progressFill = document.getElementById('progressFill');
+            const progress = ((currentQuestion) / questions.length) * 100;
+            progressFill.style.width = progress + '%';
+        }
+        
+        function selectOption(option) {
+            if (answered) return;
+            
+            // Remove previous selection
+            document.querySelectorAll('.option').forEach(o => o.classList.remove('selected'));
+            
+            // Select current option
+            option.classList.add('selected');
+            selectedAnswer = option.getAttribute('data-answer');
+            
+            // Enable check button
+            document.getElementById('nextBtn').disabled = false;
+            document.getElementById('nextBtn').textContent = 'Sprawdź odpowiedź';
+        }
+        
+        function checkAnswer() {
+            if (!selectedAnswer || answered) return;
+            
+            answered = true;
+            const correctAnswer = questions[currentQuestion].correct;
+            const isCorrect = selectedAnswer === correctAnswer;
+            
+            // Show results for all options
+            document.querySelectorAll('.option').forEach(option => {
+                const answer = option.getAttribute('data-answer');
+                if (answer === correctAnswer) {
+                    option.classList.add('correct');
+                } else if (answer === selectedAnswer && !isCorrect) {
+                    option.classList.add('incorrect');
+                }
+                option.style.cursor = 'default';
+            });
+            
+            // Show explanation
+            const explanation = document.querySelector('.question-container.active .explanation');
+            explanation.classList.add('show');
+            
+            // Update score
+            if (isCorrect) {
+                score++;
+            }
+            
+            // Store result
+            results.push({
+                question: currentQuestion + 1,
+                correct: isCorrect,
+                topic: questions[currentQuestion].topic
+            });
+            
+            // Update button
+            if (currentQuestion < questions.length - 1) {
+                document.getElementById('nextBtn').textContent = 'Następne pytanie ➡️';
+            } else {
+                document.getElementById('nextBtn').textContent = '🏁 Zobacz wyniki';
+            }
+        }
+        
+        function nextQuestion() {
+            if (!answered) {
+                checkAnswer();
+                return;
+            }
+            
+            if (currentQuestion < questions.length - 1) {
+                // Move to next question
+                document.querySelector('.question-container.active').classList.remove('active');
+                currentQuestion++;
+                document.querySelectorAll('.question-container')[currentQuestion].classList.add('active');
+                
+                // Reset state
+                selectedAnswer = null;
+                answered = false;
+                document.getElementById('nextBtn').disabled = true;
+                document.getElementById('nextBtn').textContent = 'Sprawdź odpowiedź';
+                document.getElementById('prevBtn').disabled = false;
+                
+                updateProgress();
+            } else {
+                // Show results
+                showResults();
+            }
+        }
+        
+        function previousQuestion() {
+            if (currentQuestion > 0) {
+                document.querySelector('.question-container.active').classList.remove('active');
+                currentQuestion--;
+                document.querySelectorAll('.question-container')[currentQuestion].classList.add('active');
+                
+                // Reset state for previous question
+                selectedAnswer = null;
+                answered = false;
+                document.getElementById('nextBtn').disabled = true;
+                document.getElementById('nextBtn').textContent = 'Sprawdź odpowiedź';
+                
+                if (currentQuestion === 0) {
+                    document.getElementById('prevBtn').disabled = true;
+                }
+                
+                updateProgress();
+            }
+        }
+        
+        function showResults() {
+            // Hide questions and navigation
+            document.querySelectorAll('.question-container').forEach(q => q.style.display = 'none');
+            document.getElementById('navigationButtons').style.display = 'none';
+            
+            // Show results
+            const resultsDiv = document.querySelector('.results');
+            resultsDiv.classList.add('show');
+            
+            // Update progress to 100%
+            document.getElementById('progressFill').style.width = '100%';
+            
+            // Calculate and display score
+            const percentage = Math.round((score / questions.length) * 100);
+            document.getElementById('scoreText').textContent = `${score}/10`;
+            
+            const scoreCircle = document.getElementById('scoreCircle');
+            const resultTitle = document.getElementById('resultTitle');
+            const resultMessage = document.getElementById('resultMessage');
+            
+            if (percentage >= 90) {
+                scoreCircle.className = 'score-circle score-excellent';
+                resultTitle.textContent = '🎉 Doskonale!';
+                resultMessage.textContent = 'Masz świetne podstawy norweskiego! Możesz przejść do następnej lekcji.';
+            } else if (percentage >= 70) {
+                scoreCircle.className = 'score-circle score-good';
+                resultTitle.textContent = '👏 Bardzo dobrze!';
+                resultMessage.textContent = 'Dobrze opanowałeś podstawy. Małe powtórki i możesz iść dalej!';
+            } else if (percentage >= 50) {
+                scoreCircle.className = 'score-circle score-average';
+                resultTitle.textContent = '📚 Nieźle!';
+                resultMessage.textContent = 'Masz podstawy, ale warto powtórzyć materiał z Lekcji 1.';
+            } else {
+                scoreCircle.className = 'score-circle score-poor';
+                resultTitle.textContent = '💪 Nie poddawaj się!';
+                resultMessage.textContent = 'Warto przeczytać Lekcję 1 jeszcze raz i spróbować ponownie.';
+            }
+            
+            // Generate recommendations
+            generateRecommendations();
+        }
+        
+        function generateRecommendations() {
+            const recommendationsList = document.getElementById('recommendationsList');
+            const wrongTopics = results.filter(r => !r.correct).map(r => r.topic);
+            const uniqueTopics = [...new Set(wrongTopics)];
+            
+            recommendationsList.innerHTML = '';
+            
+            if (score === questions.length) {
+                recommendationsList.innerHTML = '<li>🎯 Przejdź do Lekcji 2: Języki i liczebniki</li>';
+            } else {
+                if (uniqueTopics.includes('podstawowe-zwroty')) {
+                    recommendationsList.innerHTML += '<li>📝 Powtórz podstawowe zwroty i powitania</li>';
+                }
+                if (uniqueTopics.includes('liczebniki')) {
+                    recommendationsList.innerHTML += '<li>🔢 Przećwicz liczebniki 1-10</li>';
+                }
+                if (uniqueTopics.includes('rodzajniki')) {
+                    recommendationsList.innerHTML += '<li>📚 Powtórz rodzajniki: en, ei, et</li>';
+                }
+                if (uniqueTopics.includes('słownictwo')) {
+                    recommendationsList.innerHTML += '<li>💭 Przećwicz podstawowe słownictwo</li>';
+                }
+                if (uniqueTopics.includes('alfabet')) {
+                    recommendationsList.innerHTML += '<li>🔤 Powtórz specjalne litery: æ, ø, å</li>';
+                }
+                
+                recommendationsList.innerHTML += '<li>🔄 Spróbuj quiz ponownie po powtórce</li>';
+            }
+        }
+        
+        function restartQuiz() {
+            currentQuestion = 0;
+            selectedAnswer = null;
+            score = 0;
+            answered = false;
+            results = [];
+            
+            // Reset UI
+            document.querySelector('.results').classList.remove('show');
+            document.getElementById('navigationButtons').style.display = 'flex';
+            document.getElementById('prevBtn').disabled = true;
+            document.getElementById('nextBtn').disabled = true;
+            document.getElementById('nextBtn').textContent = 'Sprawdź odpowiedź';
+            
+            // Reset questions
+            document.querySelectorAll('.question-container').forEach((q, index) => {
+                q.style.display = 'block';
+                q.classList.remove('active');
+                if (index === 0) q.classList.add('active');
+                
+                // Reset options
+                q.querySelectorAll('.option').forEach(option => {
+                    option.className = 'option';
+                    option.style.cursor = 'pointer';
+                });
+                
+                // Hide explanations
+                q.querySelector('.explanation').classList.remove('show');
+            });
+            
+            updateProgress();
+        }
+        
+        function nextLesson() {
+            alert('🎉 Gratulacje! Przejdź do Lekcji 2 w głównym menu kursu.');
+        }
+        
+        // Event listeners
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add click listeners to options
+            document.querySelectorAll('.option').forEach(option => {
+                option.addEventListener('click', () => selectOption(option));
+            });
+            
+            updateProgress();
+        });
+    </script>
+</body>
+</html>
