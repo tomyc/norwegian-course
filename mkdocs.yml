@@ -1,93 +1,7 @@
-site_name: "Kurs języka norweskiego"
-site_description: "Kompleksowy kurs języka norweskiego - od podstaw do zaawansowanego poziomu"
-site_author: "Nauczyciel Norweskiego"
-site_url: "https://tomyc.github.io/norwegian-course/"
-
-repo_name: "norwegian-course"
-repo_url: "https://github.com/tomyc/norwegian-course"
-edit_uri: "edit/main/docs/"
-
-theme:
-  name: material
-  language: en
-  palette:
-    # Palette toggle for light mode
-    - scheme: default
-      primary: blue
-      accent: light blue
-      toggle:
-        icon: material/brightness-7
-        name: Switch to dark mode
-    # Palette toggle for dark mode
-    - scheme: slate
-      primary: blue
-      accent: light blue
-      toggle:
-        icon: material/brightness-4
-        name: Switch to light mode
-  font:
-    text: Roboto
-    code: JetBrains Mono
-  features:
-    - navigation.tabs
-    - navigation.tabs.sticky
-    - navigation.top
-    - navigation.tracking
-    - search.highlight
-    - search.share
-    - search.suggest
-    - content.action.edit
-    - content.action.view
-    - content.code.copy
-  icon:
-    repo: fontawesome/brands/github
-    edit: material/pencil
-    view: material/eye
-
-plugins:
-  - search:
-      lang: en
-  - minify:
-      minify_html: true
-
-markdown_extensions:
-  - abbr
-  - admonition
-  - attr_list
-  - def_list
-  - footnotes
-  - md_in_html
-  - toc:
-      permalink: true
-  - pymdownx.arithmatex:
-      generic: true
-  - pymdownx.betterem:
-      smart_enable: all
-  - pymdownx.caret
-  - pymdownx.details
-  - pymdownx.emoji:
-      emoji_index: !!python/name:material.extensions.emoji.twemoji
-      emoji_generator: !!python/name:material.extensions.emoji.to_svg
-  - pymdownx.highlight:
-      anchor_linenums: true
-      line_spans: __span
-      pygments_lang_class: true
-  - pymdownx.inlinehilite
-  - pymdownx.keys
-  - pymdownx.magiclink
-  - pymdownx.mark
-  - pymdownx.smartsymbols
-  - pymdownx.superfences
-  - pymdownx.tabbed:
-      alternate_style: true
-  - pymdownx.tasklist:
-      custom_checkbox: true
-  - pymdownx.tilde
-
 nav:
 - Strona główna: index.md
-- Lekcje podstawowe (1-10):
-  - 'Lekcja 1: Podstawy': lekcje-podstawowe/lekcja-01.md
+- Lekcje podstawowe:
+  - 'Lekcja 1: Podstawy języka norweskiego': lekcje-podstawowe/lekcja-01.md
   - 'Lekcja 2: Języki i liczebniki': lekcje-podstawowe/lekcja-02.md
   - 'Lekcja 3: Rodzina i czas': lekcje-podstawowe/lekcja-03.md
   - 'Lekcja 4: Zaimki': lekcje-podstawowe/lekcja-04.md
@@ -97,7 +11,7 @@ nav:
   - 'Lekcja 8: Zawody i czynności': lekcje-podstawowe/lekcja-08.md
   - 'Lekcja 9: Pogoda i rzeczowniki': lekcje-podstawowe/lekcja-09.md
   - 'Lekcja 10: Czasowniki modalne': lekcje-podstawowe/lekcja-10.md
-- Lekcje średnie (11-17):
+- Lekcje średnie:
   - 'Lekcja 11: Jedzenie': lekcje-srednie/lekcja-11.md
   - 'Lekcja 12: Liczba mnoga': lekcje-srednie/lekcja-12.md
   - 'Lekcja 13: Zaimki wskazujące': lekcje-srednie/lekcja-13.md
@@ -105,44 +19,52 @@ nav:
   - 'Lekcja 15: Pory roku': lekcje-srednie/lekcja-15.md
   - 'Lekcja 16: Czasowniki i wymowa': lekcje-srednie/lekcja-16.md
   - 'Lekcja 17: Miesiące': lekcje-srednie/lekcja-17.md
-- Lekcje zaawansowane (18-22):
+- Lekcje zaawansowane:
   - 'Lekcja 18: Czasy przeszłe': lekcje-zaawansowane/lekcja-18.md
   - 'Lekcja 19: Wskaźniki czasów': lekcje-zaawansowane/lekcja-19.md
   - 'Lekcja 20: Ćwiczenia czasów': lekcje-zaawansowane/lekcja-20.md
   - 'Lekcja 21: Tekst praktyczny': lekcje-zaawansowane/lekcja-21.md
   - 'Lekcja 22: Słownictwo zaawansowane': lekcje-zaawansowane/lekcja-22.md
 - Gramatyka:
-  - Stopniowanie przymiotników: gramatyka/stopniowanie-przymiotnikow.md
-  - Czasowniki nieregularne: gramatyka/czasowniki-nieregularne.md
-  - Tryb rozkazujący: gramatyka/tryb-rozkazujacy.md
-  - Czas perfektum: gramatyka/czas-perfektum.md
   - Zaimki: gramatyka/zaimki.md
+  - Czasowniki nieregularne: gramatyka/czasowniki-nieregularne.md
+  - Stopniowanie przymiotników: gramatyka/stopniowanie-przymiotnikow.md
   - Rzeczowniki: gramatyka/rzeczowniki.md
+  - Czas perfektum: gramatyka/czas-perfektum.md
+  - Tryb rozkazujący: gramatyka/tryb-rozkazujacy.md
 - Słownictwo:
   - Podstawowe zwroty: slownictwo/podstawowe-zwroty.md
-  - Rodzina: slownictwo/rodzina.md
-  - Kolory: slownictwo/kolory.md
   - Liczebniki: slownictwo/liczebniki.md
-  - Godziny: slownictwo/godziny.md
+  - Kolory: slownictwo/kolory.md
+  - Rodzina: slownictwo/rodzina.md
   - Jedzenie: slownictwo/jedzenie.md
+  - Godziny: slownictwo/godziny.md
   - Pogoda: slownictwo/pogoda.md
   - Pory roku: slownictwo/pory-roku.md
+- 🎮 Gry i ćwiczenia:
+  - Przegląd gier: games/index.md
+  - Memory Game: games/memory-game.html
+  - Pronunciation Trainer: games/pronunciation-trainer.html
 - Ćwiczenia:
   - Ćwiczenia podstawowe: cwiczenia/podstawowe.md
   - Ćwiczenia gramatyczne: cwiczenia/gramatyczne.md
-  - Dialogi: cwiczenia/dialogi.md
+  - Dialogi praktyczne: cwiczenia/dialogi.md
   - Testy: cwiczenia/testy.md
-- Materiały pomocnicze:
-  - Tabele gramatyczne: pomocnicze/tabele-gramatyczne.md
+- Dialogi:
+  - Dialogi sytuacyjne: dialogi/sytuacyjne.md
+- Kultura:
+  - Norwegia i kultura: kultura/norwegia.md
+- Pomocnicze:
   - Wymowa: pomocnicze/wymowa.md
-  - Słowniczek: pomocnicze/slowniczek.md
-
-extra:
-  social:
-    - icon: fontawesome/brands/github
-      link: https://github.com/tomyc
-  analytics:
-    provider: google
-    property: !ENV [GOOGLE_ANALYTICS_KEY, ""]
-
-copyright: "Copyright &copy; 2025 - Kurs języka norweskiego"
+  - Postępy w nauce: pomocnicze/postepy.md
+  - Tabele gramatyczne: pomocnicze/tabele-gramatyczne.md
+  - Słowniczek tematyczny: pomocnicze/slowniczek.md
+site_description: Kompleksowy kurs norweskiego na podstawie lekcji 1-22
+site_name: Kurs Języka Norweskiego - Franciszek
+theme:
+  language: pl
+  name: material
+  palette:
+    accent: red
+    primary: blue
+    scheme: default
