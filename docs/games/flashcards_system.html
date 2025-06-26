@@ -12,44 +12,45 @@
         }
         
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            padding: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            font-family: 'Roboto', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif;
+            background-color: #fafafa;
+            color: rgba(0,0,0,.87);
+            line-height: 1.5;
+            padding: 1rem;
         }
         
         .flashcard-container {
             max-width: 900px;
             width: 100%;
-            background: white;
-            border-radius: 20px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            margin: 0 auto;
+            background: #fff;
+            border-radius: 4px;
+            box-shadow: 0 2px 4px rgba(0,0,0,.1);
             overflow: hidden;
         }
         
         .header {
-            background: linear-gradient(45deg, #FF6B6B, #4ECDC4);
-            color: white;
-            padding: 30px;
+            background: #1976d2;
+            color: #fff;
+            padding: 2rem;
             text-align: center;
         }
         
         .header h1 {
-            font-size: 2.5em;
-            margin-bottom: 10px;
+            font-size: 1.75rem;
+            font-weight: 400;
+            margin-bottom: 0.5rem;
         }
         
         .header p {
-            font-size: 1.2em;
+            font-size: 1rem;
             opacity: 0.9;
+            font-weight: 300;
         }
         
         .controls {
-            padding: 20px 30px;
-            background: #f8f9fa;
+            padding: 1.5rem;
+            background: #f5f5f5;
             border-bottom: 1px solid #e0e0e0;
         }
         
@@ -57,60 +58,71 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 15px;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+            gap: 1rem;
         }
         
         .category-selector {
             display: flex;
-            gap: 10px;
+            gap: 0.5rem;
             flex-wrap: wrap;
         }
         
         .category-btn {
-            padding: 8px 16px;
-            border: 2px solid #4ECDC4;
-            background: white;
-            color: #4ECDC4;
-            border-radius: 20px;
+            padding: 0.5rem 1rem;
+            border: 1px solid #1976d2;
+            background: #fff;
+            color: #1976d2;
+            border-radius: 4px;
             cursor: pointer;
-            transition: all 0.3s ease;
-            font-size: 0.9em;
+            transition: all 0.2s ease;
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            font-weight: 500;
+            letter-spacing: 0.5px;
         }
         
         .category-btn.active {
-            background: #4ECDC4;
-            color: white;
+            background: #1976d2;
+            color: #fff;
+        }
+        
+        .category-btn:hover:not(.active) {
+            background: #e3f2fd;
         }
         
         .progress-info {
             display: flex;
-            gap: 20px;
+            gap: 1rem;
             align-items: center;
         }
         
         .progress-item {
             display: flex;
             align-items: center;
-            gap: 5px;
+            gap: 0.5rem;
+            font-size: 0.875rem;
+            color: #666;
         }
         
         .progress-bar {
             width: 100px;
-            height: 6px;
+            height: 4px;
             background: #e0e0e0;
-            border-radius: 3px;
+            border-radius: 2px;
             overflow: hidden;
         }
         
         .progress-fill {
             height: 100%;
-            background: linear-gradient(90deg, #4ECDC4, #44A08D);
+            background: #1976d2;
             width: 0%;
-            transition: width 0.5s ease;
+            transition: width 0.3s ease;
         }
         
         .main-content {
-            padding: 40px;
+            padding: 2rem;
             min-height: 500px;
             display: flex;
             align-items: center;
@@ -123,6 +135,7 @@
             position: relative;
             cursor: pointer;
             margin: 0 auto;
+            perspective: 1000px;
         }
         
         .flashcard-inner {
@@ -130,7 +143,7 @@
             width: 100%;
             height: 100%;
             text-align: center;
-            transition: transform 0.8s;
+            transition: transform 0.6s;
             transform-style: preserve-3d;
         }
         
@@ -147,42 +160,45 @@
             align-items: center;
             justify-content: center;
             flex-direction: column;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            border-radius: 4px;
+            box-shadow: 0 4px 8px rgba(0,0,0,.12);
+            border: 1px solid #e0e0e0;
         }
         
         .flashcard-front {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
+            background: #1976d2;
+            color: #fff;
         }
         
         .flashcard-back {
-            background: linear-gradient(135deg, #4ECDC4 0%, #44A08D 100%);
-            color: white;
+            background: #fff;
+            color: rgba(0,0,0,.87);
             transform: rotateY(180deg);
         }
         
         .word {
-            font-size: 2.5em;
-            font-weight: bold;
-            margin-bottom: 15px;
+            font-size: 2rem;
+            font-weight: 400;
+            margin-bottom: 1rem;
         }
         
         .pronunciation {
-            font-size: 1.2em;
-            opacity: 0.9;
-            margin-bottom: 10px;
+            font-size: 1rem;
+            opacity: 0.7;
+            margin-bottom: 0.5rem;
+            font-family: 'Roboto Mono', monospace;
         }
         
         .translation {
-            font-size: 2em;
-            font-weight: bold;
-            margin-bottom: 15px;
+            font-size: 1.5rem;
+            font-weight: 400;
+            margin-bottom: 1rem;
+            color: #1976d2;
         }
         
         .example {
-            font-size: 1.1em;
-            opacity: 0.9;
+            font-size: 0.875rem;
+            opacity: 0.7;
             font-style: italic;
             text-align: center;
             max-width: 300px;
@@ -191,45 +207,63 @@
         .navigation {
             display: flex;
             justify-content: center;
-            gap: 20px;
-            margin-top: 30px;
+            gap: 1rem;
+            margin-top: 2rem;
         }
         
         .nav-btn {
-            padding: 15px 30px;
+            padding: 0.75rem 1.5rem;
             border: none;
-            border-radius: 25px;
-            font-size: 1.1em;
+            border-radius: 4px;
+            font-size: 0.875rem;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.2s ease;
+            text-transform: uppercase;
+            font-weight: 500;
+            letter-spacing: 0.5px;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 0.5rem;
         }
         
         .btn-primary {
-            background: linear-gradient(45deg, #4ECDC4, #44A08D);
-            color: white;
+            background: #1976d2;
+            color: #fff;
+        }
+        
+        .btn-primary:hover {
+            background: #1565c0;
+            box-shadow: 0 2px 8px rgba(25,118,210,.3);
         }
         
         .btn-secondary {
-            background: #f0f0f0;
-            color: #666;
+            background: transparent;
+            color: #1976d2;
+            border: 1px solid #1976d2;
+        }
+        
+        .btn-secondary:hover {
+            background: #e3f2fd;
         }
         
         .btn-success {
-            background: linear-gradient(45deg, #2ECC71, #27AE60);
-            color: white;
+            background: #4caf50;
+            color: #fff;
+        }
+        
+        .btn-success:hover {
+            background: #43a047;
+            box-shadow: 0 2px 8px rgba(76,175,80,.3);
         }
         
         .btn-danger {
-            background: linear-gradient(45deg, #E74C3C, #C0392B);
-            color: white;
+            background: #f44336;
+            color: #fff;
         }
         
-        .nav-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        .btn-danger:hover {
+            background: #e53935;
+            box-shadow: 0 2px 8px rgba(244,67,54,.3);
         }
         
         .nav-btn:disabled {
@@ -238,8 +272,8 @@
         }
         
         .stats {
-            background: #f8f9fa;
-            padding: 20px 30px;
+            background: #f5f5f5;
+            padding: 1.5rem;
             border-top: 1px solid #e0e0e0;
             display: flex;
             justify-content: space-around;
@@ -249,29 +283,31 @@
         .stat-item {
             display: flex;
             flex-direction: column;
-            gap: 5px;
+            gap: 0.25rem;
         }
         
         .stat-number {
-            font-size: 2em;
-            font-weight: bold;
-            color: #4ECDC4;
+            font-size: 1.5rem;
+            font-weight: 500;
+            color: #1976d2;
         }
         
         .stat-label {
             color: #666;
-            font-size: 0.9em;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
         
         .flip-hint {
             position: absolute;
-            bottom: 10px;
-            right: 10px;
+            bottom: 1rem;
+            right: 1rem;
             background: rgba(255,255,255,0.2);
-            color: white;
-            padding: 5px 10px;
-            border-radius: 15px;
-            font-size: 0.8em;
+            color: #fff;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
             animation: pulse 2s infinite;
         }
         
@@ -283,27 +319,29 @@
         
         .no-more-cards {
             text-align: center;
-            padding: 40px;
+            padding: 2rem;
         }
         
         .no-more-cards h2 {
-            color: #4ECDC4;
-            margin-bottom: 20px;
+            color: #1976d2;
+            margin-bottom: 1rem;
+            font-weight: 400;
         }
         
         .no-more-cards p {
             color: #666;
-            margin-bottom: 30px;
+            margin-bottom: 2rem;
         }
         
         .audio-btn {
             background: none;
             border: none;
             color: inherit;
-            font-size: 1.5em;
+            font-size: 1.25rem;
             cursor: pointer;
-            opacity: 0.8;
-            transition: opacity 0.3s ease;
+            opacity: 0.7;
+            transition: opacity 0.2s ease;
+            padding: 0.25rem;
         }
         
         .audio-btn:hover {
@@ -317,21 +355,25 @@
             }
             
             .word {
-                font-size: 2em;
+                font-size: 1.75rem;
             }
             
             .translation {
-                font-size: 1.5em;
+                font-size: 1.25rem;
             }
             
             .control-row {
                 flex-direction: column;
-                gap: 15px;
+                gap: 1rem;
             }
             
             .stats {
                 flex-direction: column;
-                gap: 15px;
+                gap: 1rem;
+            }
+            
+            .main-content {
+                padding: 1rem;
             }
         }
     </style>
@@ -339,7 +381,7 @@
 <body>
     <div class="flashcard-container">
         <div class="header">
-            <h1>🇳🇴 Flashcards Norweskie 🇵🇱</h1>
+            <h1>Flashcards Norweskie</h1>
             <p>Interaktywna nauka słownictwa</p>
         </div>
         
@@ -384,18 +426,18 @@
         </div>
         
         <div class="no-more-cards" id="noMoreCards" style="display: none;">
-            <h2>🎉 Gratulacje!</h2>
+            <h2>Gratulacje!</h2>
             <p>Przeszedłeś przez wszystkie karty w tej kategorii!</p>
             <div class="navigation">
-                <button class="nav-btn btn-primary" onclick="resetDeck()">🔄 Powtórz kategorię</button>
-                <button class="nav-btn btn-secondary" onclick="switchCategory()">📚 Zmień kategorię</button>
+                <button class="nav-btn btn-primary" onclick="resetDeck()">Powtórz kategorię</button>
+                <button class="nav-btn btn-secondary" onclick="switchCategory()">Zmień kategorię</button>
             </div>
         </div>
         
         <div class="navigation" id="navigation">
             <button class="nav-btn btn-danger" onclick="markAsHard()">❌ Trudne</button>
-            <button class="nav-btn btn-secondary" onclick="previousCard()">⬅️ Poprzednia</button>
-            <button class="nav-btn btn-primary" onclick="nextCard()">Następna ➡️</button>
+            <button class="nav-btn btn-secondary" onclick="previousCard()">⬅ Poprzednia</button>
+            <button class="nav-btn btn-primary" onclick="nextCard()">Następna ➡</button>
             <button class="nav-btn btn-success" onclick="markAsEasy()">✅ Łatwe</button>
         </div>
         
@@ -533,7 +575,6 @@
         }
         
         function switchToCategory(category) {
-            // Update button states
             document.querySelectorAll('.category-btn').forEach(btn => {
                 btn.classList.remove('active');
             });
@@ -556,7 +597,6 @@
                 currentDeck = [...vocabulary[category]];
             }
             
-            // Shuffle deck
             currentDeck = shuffleArray(currentDeck);
             
             document.getElementById('noMoreCards').style.display = 'none';
@@ -585,7 +625,6 @@
             document.getElementById('polishTranslation').textContent = card.pl;
             document.getElementById('example').textContent = card.ex;
             
-            // Reset flip state
             isFlipped = false;
             document.getElementById('flashcard').classList.remove('flipped');
             
@@ -598,7 +637,6 @@
                 flashcard.classList.remove('flipped');
             } else {
                 flashcard.classList.add('flipped');
-                // Mark as studied
                 const cardId = `${currentCategory}-${currentCardIndex}`;
                 if (!stats.studiedCards.has(cardId)) {
                     stats.studiedCards.add(cardId);
@@ -634,7 +672,6 @@
         function markAsHard() {
             stats.hard++;
             updateStats();
-            // Move card to end of deck for review
             const currentCard = currentDeck[currentCardIndex];
             currentDeck.push(currentCard);
             nextCard();
@@ -666,13 +703,11 @@
         }
         
         function switchCategory() {
-            // Show category selection
             alert('Wybierz kategorię z przycisków powyżej!');
         }
         
         function playAudio(event) {
             event.stopPropagation();
-            // Symulacja dźwięku - w prawdziwej aplikacji tutaj byłoby audio
             const card = currentDeck[currentCardIndex];
             if ('speechSynthesis' in window) {
                 const utterance = new SpeechSynthesisUtterance(card.no);
@@ -684,7 +719,6 @@
             }
         }
         
-        // Keyboard shortcuts
         document.addEventListener('keydown', function(e) {
             switch(e.key) {
                 case ' ':
@@ -711,7 +745,6 @@
             }
         });
         
-        // Initialize app
         document.addEventListener('DOMContentLoaded', initializeApp);
     </script>
 </body>

@@ -155,4 +155,6 @@ Po ukończeniu kursu rozważ oficjalne certyfikaty:
 
 ---
 
-*Materiały opracowane na podstawie 22 lekcji prowadzonych przez doświadczonych lektorów. Kurs regularnie aktualizowany i wzbogacany o nowe treści.*
+*Materiały opracowane w postaci 22 lekcji prowadzonych przez 
+doświadczonego lektora. Kurs regularnie aktualizowany i wzbogacany o nowe 
+treści.*

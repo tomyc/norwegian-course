@@ -37,7 +37,7 @@ Interaktywny quiz sprawdzający wiedzę z pierwszej lekcji norweskiego.
 - Analiza słabych punktów
 - Możliwość powtórzenia quizu
 
-### [🧠 Memory Game - Gra pamięciowa](memory-game.html)
+### [🧠 Memory Game - Gra pamięciowa](memory_game.html)
 Dopasuj norweskie słowa z polskimi tłumaczeniami. Różne kategorie słownictwa i poziomy trudności.
 
 **Funkcje:**
@@ -47,7 +47,7 @@ Dopasuj norweskie słowa z polskimi tłumaczeniami. Różne kategorie słownictw
 - Podpowiedzi i statystyki
 - Responsywny design
 
-### [🔊 Pronunciation Trainer - Trener wymowy](pronunciation-trainer.html)
+### [🔊 Pronunciation Trainer - Trener wymowy](pronunciation_trainer.html)
 Ćwicz poprawną wymowę norweskich liter i słów z funkcją nagrywania.
 
 **Funkcje:**
