@@ -14,7 +14,7 @@ Dopasuj norweskie słowa z polskimi tłumaczeniami. Różne kategorie słownictw
 - Podpowiedzi i statystyki
 - Responsywny design
 
-### [🔊 Pronunciation Trainer - Trener wymowy](../games/pronunciation-trainer.html)
+### [🔊 Pronunciation Trainer - Trener wymowy](../games/pronunciation_trainer.html)
 Ćwicz poprawną wymowę norweskich liter i słów z funkcją nagrywania.
 
 **Funkcje:**
