@@ -186,26 +186,22 @@
             transform-origin: bottom center;
             border-radius: 2px;
             z-index: 2;
+            top: 50%;
+            left: 50%;
         }
         
         .hour-hand {
             width: 4px;
             height: 50px;
-            top: 50%;
-            left: 50%;
-            margin-top: -50px;
-            margin-left: -2px;
             background: #1976d2;
+            transform: translate(-50%, -100%);
         }
         
         .minute-hand {
             width: 2px;
             height: 70px;
-            top: 50%;
-            left: 50%;
-            margin-top: -70px;
-            margin-left: -1px;
             background: #333;
+            transform: translate(-50%, -100%);
         }
         
         .clock-numbers {
@@ -709,8 +705,8 @@
             const minuteAngle = (minutes * 6) - 90;
             const hourAngle = ((hours % 12) * 30 + minutes * 0.5) - 90;
             
-            hourHand.style.transform = `rotate(${hourAngle}deg)`;
-            minuteHand.style.transform = `rotate(${minuteAngle}deg)`;
+            hourHand.style.transform = `translate(-50%, -100%) rotate(${hourAngle}deg)`;
+            minuteHand.style.transform = `translate(-50%, -100%) rotate(${minuteAngle}deg)`;
         }
         
         function createOptions(options) {
