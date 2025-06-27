@@ -15,6 +15,19 @@ Interaktywna gra do nauki liczb i godzin po norwesku z trzema trybami gry.
 - Statystyki i poziomy
 - Skróty klawiszowe (1-4 dla odpowiedzi, Spacja/Enter)
 
+### [🇳🇴 Irregular Verbs Game - Czasowniki nieregularne](norwegian_irregular_verbs_game.html)
+Kompleksowa gra do opanowania najważniejszych czasowników nieregularnych w języku norweskim.
+
+**Funkcje:**
+- 4 tryby nauki: Fiszki, Uzupełnij formy, Quiz wyboru, Dopasowywanie
+- 3 poziomy trudności (podstawowe, średnie, zaawansowane)
+- 23 najważniejsze czasowniki nieregularne z Twoich lekcji
+- Wszystkie formy czasowników (infinitive, present, preteritum, perfektum)
+- System punktacji z seriami i osiągnięciami
+- Pasek postępu i statystyki celności
+- Przykłady użycia w zdaniach
+- Skróty klawiszowe (Spacja - obrót fiszki, Enter - następne)
+
 ### [🇳🇴 Flashcards - Karty do nauki słownictwa](flashcards_system.html)
 System kart do nauki słownictwa norweskiego z różnymi kategoriami.
 
@@ -78,6 +91,11 @@ Aby używać interaktywnych gier:
 - `Spacja/Enter` - Następne pytanie
 - `Escape` - Restart gry
 
+**Irregular Verbs Game:**
+- `Spacja/Enter` - Obrót fiszki lub następne pytanie
+- `1-4` - Wybór odpowiedzi w quizie
+- `Enter` - Sprawdź odpowiedzi w trybie uzupełniania
+
 **Flashcards:**
 - `Spacja/Enter` - Obrót karty
 - `→` - Następna karta
@@ -121,15 +139,19 @@ Liczby od 1 do 100
 ### Jedzenie (12 słów)
 Podstawowe słownictwo kulinarne
 
+### Czasowniki nieregularne (23 czasowniki)
+Najważniejsze czasowniki nieregularne z lekcji - 3 poziomy trudności
+
 ---
 
 ## 🎯 Wskazówki do nauki
 
 1. **Zacznij od flashcards** - poznaj słownictwo
 2. **Przećwicz liczby i godziny** w dedykowanej grze
-3. **Sprawdź wiedzę** quizem z lekcji 1
-4. **Użyj Memory Game** do utrwalenia
-5. **Ćwicz wymowę** z trenerem wymowy
+3. **Opanuj czasowniki nieregularne** - kluczowy element gramatyki
+4. **Sprawdź wiedzę** quizem z lekcji 1
+5. **Użyj Memory Game** do utrwalenia
+6. **Ćwicz wymowę** z trenerem wymowy
 
 ---
 

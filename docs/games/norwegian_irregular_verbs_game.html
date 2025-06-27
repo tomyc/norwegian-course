@@ -1,0 +1,1019 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gra - Czasowniki Nieregularne</title>
+    <style>
+        /* Material Design Variables */
+        :root {
+            --md-primary-fg-color: #1976d2;
+            --md-primary-bg-color: #ffffff;
+            --md-accent-fg-color: #526cfe;
+            --md-default-bg-color: #fafafa;
+            --md-default-fg-color: rgba(0,0,0,.87);
+            --md-text-color: rgba(0,0,0,.87);
+            --md-text-light-color: rgba(0,0,0,.54);
+            --md-border-color: rgba(0,0,0,.12);
+            --md-success-color: #4caf50;
+            --md-error-color: #f44336;
+            --md-warning-color: #ff9800;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: var(--md-default-bg-color);
+            color: var(--md-text-color);
+            line-height: 1.5;
+            padding: 16px;
+        }
+        
+        .game-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: var(--md-primary-bg-color);
+            border-radius: 4px;
+            box-shadow: 0 2px 4px rgba(0,0,0,.1);
+            overflow: hidden;
+        }
+        
+        .game-header {
+            background: var(--md-primary-fg-color);
+            color: white;
+            padding: 24px;
+            text-align: center;
+        }
+        
+        .game-header h1 {
+            font-size: 28px;
+            font-weight: 400;
+            margin-bottom: 8px;
+            letter-spacing: normal;
+        }
+        
+        .game-header p {
+            font-size: 16px;
+            opacity: 0.8;
+            font-weight: 400;
+        }
+        
+        .stats-container {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            margin-top: 24px;
+            flex-wrap: wrap;
+        }
+        
+        .stat-card {
+            background: rgba(255,255,255,0.12);
+            padding: 12px 16px;
+            border-radius: 4px;
+            text-align: center;
+            min-width: 80px;
+        }
+        
+        .stat-value {
+            font-size: 24px;
+            font-weight: 500;
+            display: block;
+        }
+        
+        .stat-label {
+            font-size: 12px;
+            opacity: 0.8;
+            margin-top: 4px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .mode-selection {
+            padding: 24px;
+            background: var(--md-primary-bg-color);
+            border-bottom: 1px solid var(--md-border-color);
+        }
+        
+        .mode-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .mode-card {
+            background: var(--md-primary-bg-color);
+            border: 1px solid var(--md-border-color);
+            border-radius: 4px;
+            padding: 16px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 0 1px 3px rgba(0,0,0,.12);
+        }
+        
+        .mode-card:hover {
+            box-shadow: 0 2px 8px rgba(0,0,0,.15);
+        }
+        
+        .mode-card.active {
+            border-color: var(--md-primary-fg-color);
+            box-shadow: 0 2px 8px rgba(25,118,210,.2);
+        }
+        
+        .mode-icon {
+            font-size: 32px;
+            margin-bottom: 8px;
+            color: var(--md-text-light-color);
+        }
+        
+        .mode-card.active .mode-icon {
+            color: var(--md-primary-fg-color);
+        }
+        
+        .mode-title {
+            font-size: 16px;
+            font-weight: 500;
+            margin-bottom: 4px;
+            color: var(--md-text-color);
+        }
+        
+        .mode-desc {
+            font-size: 14px;
+            color: var(--md-text-light-color);
+        }
+        
+        .difficulty-selector {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 24px;
+            flex-wrap: wrap;
+        }
+        
+        .difficulty-btn {
+            padding: 8px 16px;
+            border: 1px solid var(--md-border-color);
+            background: var(--md-primary-bg-color);
+            color: var(--md-text-light-color);
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-weight: 500;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .difficulty-btn:hover {
+            background: rgba(0,0,0,.04);
+        }
+        
+        .difficulty-btn.active {
+            background: var(--md-primary-fg-color);
+            color: white;
+            border-color: var(--md-primary-fg-color);
+        }
+        
+        .game-area {
+            padding: 24px;
+            min-height: 500px;
+            text-align: center;
+        }
+        
+        .question-container {
+            background: var(--md-primary-bg-color);
+            border-radius: 4px;
+            padding: 24px;
+            margin-bottom: 24px;
+            box-shadow: 0 1px 3px rgba(0,0,0,.12);
+        }
+        
+        .question-title {
+            font-size: 20px;
+            color: var(--md-text-color);
+            margin-bottom: 16px;
+            font-weight: 500;
+        }
+        
+        .verb-card {
+            background: var(--md-primary-fg-color);
+            color: white;
+            padding: 24px;
+            border-radius: 4px;
+            margin: 16px auto;
+            max-width: 400px;
+            box-shadow: 0 2px 4px rgba(0,0,0,.2);
+        }
+        
+        .verb-infinitive {
+            font-size: 32px;
+            font-weight: 400;
+            margin-bottom: 8px;
+        }
+        
+        .verb-translation {
+            font-size: 16px;
+            opacity: 0.9;
+        }
+        
+        .verb-forms {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin: 24px 0;
+        }
+        
+        .form-input {
+            position: relative;
+        }
+        
+        .form-label {
+            display: block;
+            font-weight: 500;
+            margin-bottom: 8px;
+            color: var(--md-text-color);
+            font-size: 14px;
+        }
+        
+        .form-field {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid var(--md-border-color);
+            border-radius: 4px;
+            font-size: 16px;
+            transition: all 0.2s ease;
+            text-align: center;
+            font-family: inherit;
+        }
+        
+        .form-field:focus {
+            outline: none;
+            border-color: var(--md-primary-fg-color);
+            box-shadow: 0 0 0 2px rgba(25,118,210,.2);
+        }
+        
+        .form-field.correct {
+            border-color: var(--md-success-color);
+            background: rgba(76,175,80,.1);
+        }
+        
+        .form-field.incorrect {
+            border-color: var(--md-error-color);
+            background: rgba(244,67,54,.1);
+            animation: shake 0.5s;
+        }
+        
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-4px); }
+            75% { transform: translateX(4px); }
+        }
+        
+        .options-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 12px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .option-card {
+            background: var(--md-primary-bg-color);
+            border: 1px solid var(--md-border-color);
+            border-radius: 4px;
+            padding: 16px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-size: 16px;
+            font-weight: 400;
+        }
+        
+        .option-card:hover {
+            background: rgba(0,0,0,.04);
+            border-color: var(--md-primary-fg-color);
+        }
+        
+        .option-card.selected {
+            border-color: var(--md-primary-fg-color);
+            background: rgba(25,118,210,.1);
+        }
+        
+        .option-card.correct {
+            border-color: var(--md-success-color);
+            background: rgba(76,175,80,.1);
+            color: var(--md-success-color);
+        }
+        
+        .option-card.incorrect {
+            border-color: var(--md-error-color);
+            background: rgba(244,67,54,.1);
+            color: var(--md-error-color);
+            animation: shake 0.5s;
+        }
+        
+        .feedback {
+            margin: 24px 0;
+            padding: 16px;
+            border-radius: 4px;
+            font-size: 16px;
+            display: none;
+        }
+        
+        .feedback.correct {
+            background: rgba(76,175,80,.1);
+            border: 1px solid var(--md-success-color);
+            color: var(--md-success-color);
+        }
+        
+        .feedback.incorrect {
+            background: rgba(244,67,54,.1);
+            border: 1px solid var(--md-error-color);
+            color: var(--md-error-color);
+        }
+        
+        .controls {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 24px;
+            flex-wrap: wrap;
+        }
+        
+        .control-btn {
+            padding: 10px 24px;
+            border: none;
+            border-radius: 4px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-family: inherit;
+        }
+        
+        .btn-primary {
+            background: var(--md-primary-fg-color);
+            color: white;
+        }
+        
+        .btn-primary:hover:not(:disabled) {
+            background: #1565c0;
+            box-shadow: 0 2px 4px rgba(25,118,210,.3);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: var(--md-text-light-color);
+            border: 1px solid var(--md-border-color);
+        }
+        
+        .btn-secondary:hover {
+            background: rgba(0,0,0,.04);
+        }
+        
+        .btn-success {
+            background: var(--md-success-color);
+            color: white;
+        }
+        
+        .btn-success:hover:not(:disabled) {
+            background: #43a047;
+            box-shadow: 0 2px 4px rgba(76,175,80,.3);
+        }
+        
+        .control-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+        
+        .progress-bar {
+            width: 100%;
+            height: 4px;
+            background: rgba(0,0,0,.12);
+            border-radius: 2px;
+            overflow: hidden;
+            margin: 16px 0;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: var(--md-primary-fg-color);
+            transition: width 0.3s ease;
+            width: 0%;
+        }
+        
+        .achievements {
+            margin-top: 24px;
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        
+        .achievement {
+            background: var(--md-warning-color);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 4px;
+            font-weight: 500;
+            font-size: 14px;
+            box-shadow: 0 2px 4px rgba(255,152,0,.3);
+            animation: slideIn 0.3s ease;
+        }
+        
+        @keyframes slideIn {
+            from { transform: translateY(-20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        
+        .flashcard {
+            background: var(--md-primary-bg-color);
+            border-radius: 4px;
+            box-shadow: 0 4px 8px rgba(0,0,0,.12);
+            width: 100%;
+            max-width: 400px;
+            height: 300px;
+            margin: 0 auto;
+            perspective: 1000px;
+            cursor: pointer;
+        }
+        
+        .flashcard-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+        }
+        
+        .flashcard.flipped .flashcard-inner {
+            transform: rotateY(180deg);
+        }
+        
+        .flashcard-front, .flashcard-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 4px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 24px;
+            border: 1px solid var(--md-border-color);
+        }
+        
+        .flashcard-front {
+            background: var(--md-primary-fg-color);
+            color: white;
+        }
+        
+        .flashcard-back {
+            background: var(--md-success-color);
+            color: white;
+            transform: rotateY(180deg);
+        }
+        
+        .card-verb {
+            font-size: 32px;
+            font-weight: 400;
+            margin-bottom: 16px;
+        }
+        
+        .card-meaning {
+            font-size: 16px;
+            opacity: 0.9;
+        }
+        
+        .card-forms {
+            font-size: 16px;
+            line-height: 1.6;
+        }
+        
+        @media (max-width: 768px) {
+            .game-header h1 {
+                font-size: 24px;
+            }
+            
+            .stats-container {
+                gap: 12px;
+            }
+            
+            .mode-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .verb-forms {
+                grid-template-columns: 1fr;
+            }
+            
+            .options-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .controls {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .difficulty-selector {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="game-container">
+        <div class="game-header">
+            <h1>Czasowniki Nieregularne</h1>
+            <p>Opanuj najważniejsze czasowniki w języku norweskim</p>
+            
+            <div class="stats-container">
+                <div class="stat-card">
+                    <span class="stat-value" id="score">0</span>
+                    <span class="stat-label">Punkty</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-value" id="streak">0</span>
+                    <span class="stat-label">Seria</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-value" id="mastered">0</span>
+                    <span class="stat-label">Opanowane</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-value" id="accuracy">0%</span>
+                    <span class="stat-label">Celność</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="mode-selection">
+            <div class="mode-grid">
+                <div class="mode-card active" data-mode="flashcards">
+                    <div class="mode-icon">🔄</div>
+                    <div class="mode-title">Fiszki</div>
+                    <div class="mode-desc">Nauka przez powtarzanie</div>
+                </div>
+                <div class="mode-card" data-mode="complete">
+                    <div class="mode-icon">✏️</div>
+                    <div class="mode-title">Uzupełnij</div>
+                    <div class="mode-desc">Wpisz wszystkie formy</div>
+                </div>
+                <div class="mode-card" data-mode="choose">
+                    <div class="mode-icon">🎯</div>
+                    <div class="mode-title">Wybierz</div>
+                    <div class="mode-desc">Wybierz poprawną formę</div>
+                </div>
+                <div class="mode-card" data-mode="match">
+                    <div class="mode-icon">🧩</div>
+                    <div class="mode-title">Dopasuj</div>
+                    <div class="mode-desc">Połącz formy czasowników</div>
+                </div>
+            </div>
+            
+            <div class="difficulty-selector">
+                <button class="difficulty-btn active" data-difficulty="easy">Podstawowe</button>
+                <button class="difficulty-btn" data-difficulty="medium">Średnie</button>
+                <button class="difficulty-btn" data-difficulty="hard">Zaawansowane</button>
+            </div>
+        </div>
+        
+        <div class="game-area">
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+            
+            <div id="gameContent">
+                <!-- Content will be dynamically generated -->
+            </div>
+            
+            <div class="controls">
+                <button class="control-btn btn-secondary" onclick="skipQuestion()">Pomiń</button>
+                <button class="control-btn btn-primary" onclick="nextQuestion()" id="nextBtn">Następny</button>
+                <button class="control-btn btn-secondary" onclick="restartGame()">Reset</button>
+            </div>
+            
+            <div class="feedback" id="feedback"></div>
+            
+            <div class="achievements" id="achievements"></div>
+        </div>
+    </div>
+    
+    <script>
+        // Data for irregular verbs based on your lessons
+        const verbs = {
+            easy: [
+                { inf: 'å være', pres: 'er', pret: 'var', perf: 'har vært', meaning: 'być', example: 'Jeg er norsk.' },
+                { inf: 'å ha', pres: 'har', pret: 'hadde', perf: 'har hatt', meaning: 'mieć', example: 'Jeg har en bil.' },
+                { inf: 'å gå', pres: 'går', pret: 'gikk', perf: 'har gått', meaning: 'iść', example: 'Jeg går til skolen.' },
+                { inf: 'å se', pres: 'ser', pret: 'så', perf: 'har sett', meaning: 'widzieć', example: 'Jeg ser deg.' },
+                { inf: 'å ta', pres: 'tar', pret: 'tok', perf: 'har tatt', meaning: 'brać', example: 'Jeg tar bussen.' },
+                { inf: 'å gi', pres: 'gir', pret: 'ga', perf: 'har gitt', meaning: 'dawać', example: 'Jeg gir deg en gave.' },
+                { inf: 'å få', pres: 'får', pret: 'fikk', perf: 'har fått', meaning: 'dostać', example: 'Jeg får post.' }
+            ],
+            medium: [
+                { inf: 'å gjøre', pres: 'gjør', pret: 'gjorde', perf: 'har gjort', meaning: 'robić', example: 'Hva gjør du?' },
+                { inf: 'å komme', pres: 'kommer', pret: 'kom', perf: 'har kommet', meaning: 'przychodzić', example: 'Jeg kommer i morgen.' },
+                { inf: 'å si', pres: 'sier', pret: 'sa', perf: 'har sagt', meaning: 'mówić', example: 'Hva sier du?' },
+                { inf: 'å sitte', pres: 'sitter', pret: 'satt', perf: 'har sittet', meaning: 'siedzieć', example: 'Jeg sitter her.' },
+                { inf: 'å stå', pres: 'står', pret: 'sto', perf: 'har stått', meaning: 'stać', example: 'Jeg står opp.' },
+                { inf: 'å drikke', pres: 'drikker', pret: 'drakk', perf: 'har drukket', meaning: 'pić', example: 'Jeg drikker kaffe.' },
+                { inf: 'å spise', pres: 'spiser', pret: 'spiste', perf: 'har spist', meaning: 'jeść', example: 'Jeg spiser frokost.' },
+                { inf: 'å sove', pres: 'sover', pret: 'sov', perf: 'har sovet', meaning: 'spać', example: 'Jeg sover godt.' }
+            ],
+            hard: [
+                { inf: 'å finne', pres: 'finner', pret: 'fant', perf: 'har funnet', meaning: 'znaleźć', example: 'Jeg fant nøklene.' },
+                { inf: 'å bli', pres: 'blir', pret: 'ble', perf: 'har blitt', meaning: 'zostać', example: 'Jeg blir lærer.' },
+                { inf: 'å skrive', pres: 'skriver', pret: 'skrev', perf: 'har skrevet', meaning: 'pisać', example: 'Jeg skriver brev.' },
+                { inf: 'å hjelpe', pres: 'hjelper', pret: 'hjalp', perf: 'har hjulpet', meaning: 'pomagać', example: 'Jeg hjelper deg.' },
+                { inf: 'å løpe', pres: 'løper', pret: 'løp', perf: 'har løpt', meaning: 'biegać', example: 'Jeg løper hver dag.' },
+                { inf: 'å synge', pres: 'synger', pret: 'sang', perf: 'har sunget', meaning: 'śpiewać', example: 'Hun synger vakkert.' },
+                { inf: 'å treffe', pres: 'treffer', pret: 'traff', perf: 'har truffet', meaning: 'spotykać', example: 'Jeg treffer venner.' },
+                { inf: 'å velge', pres: 'velger', pret: 'valgte', perf: 'har valgt', meaning: 'wybierać', example: 'Jeg velger deg.' }
+            ]
+        };
+        
+        let gameState = {
+            mode: 'flashcards',
+            difficulty: 'easy',
+            currentVerb: null,
+            currentIndex: 0,
+            score: 0,
+            streak: 0,
+            mastered: 0,
+            totalQuestions: 0,
+            correctAnswers: 0,
+            verbsToReview: [],
+            masteredVerbs: new Set(),
+            isAnswered: false
+        };
+        
+        function initGame() {
+            setupEventListeners();
+            updateStats();
+            loadContent();
+        }
+        
+        function setupEventListeners() {
+            // Mode selection
+            document.querySelectorAll('.mode-card').forEach(card => {
+                card.addEventListener('click', function() {
+                    document.querySelectorAll('.mode-card').forEach(c => c.classList.remove('active'));
+                    this.classList.add('active');
+                    gameState.mode = this.dataset.mode;
+                    loadContent();
+                });
+            });
+            
+            // Difficulty selection
+            document.querySelectorAll('.difficulty-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    document.querySelectorAll('.difficulty-btn').forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    gameState.difficulty = this.dataset.difficulty;
+                    resetProgress();
+                    loadContent();
+                });
+            });
+        }
+        
+        function loadContent() {
+            const content = document.getElementById('gameContent');
+            hideElements();
+            
+            switch(gameState.mode) {
+                case 'flashcards':
+                    loadFlashcards(content);
+                    break;
+                case 'complete':
+                    loadCompleteMode(content);
+                    break;
+                case 'choose':
+                    loadChooseMode(content);
+                    break;
+                case 'match':
+                    loadMatchMode(content);
+                    break;
+            }
+            
+            updateProgress();
+        }
+        
+        function loadFlashcards(content) {
+            const verb = getCurrentVerb();
+            content.innerHTML = `
+                <div class="question-container">
+                    <h2 class="question-title">Naciśnij kartę, aby ją odwrócić</h2>
+                    <div class="flashcard" onclick="flipCard()">
+                        <div class="flashcard-inner">
+                            <div class="flashcard-front">
+                                <div class="card-verb">${verb.inf}</div>
+                                <div class="card-meaning">(${verb.meaning})</div>
+                            </div>
+                            <div class="flashcard-back">
+                                <div class="card-forms">
+                                    <strong>Present:</strong> ${verb.pres}<br>
+                                    <strong>Preteritum:</strong> ${verb.pret}<br>
+                                    <strong>Perfektum:</strong> ${verb.perf}
+                                </div>
+                                <div class="card-meaning" style="margin-top: 16px; font-style: italic;">
+                                    "${verb.example}"
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            document.getElementById('nextBtn').style.display = 'inline-block';
+        }
+        
+        function loadCompleteMode(content) {
+            const verb = getCurrentVerb();
+            content.innerHTML = `
+                <div class="question-container">
+                    <h2 class="question-title">Uzupełnij wszystkie formy czasownika</h2>
+                    <div class="verb-card">
+                        <div class="verb-infinitive">${verb.inf}</div>
+                        <div class="verb-translation">${verb.meaning}</div>
+                    </div>
+                    <div class="verb-forms">
+                        <div class="form-input">
+                            <label class="form-label">Present</label>
+                            <input type="text" class="form-field" id="presInput" placeholder="np. går">
+                        </div>
+                        <div class="form-input">
+                            <label class="form-label">Preteritum</label>
+                            <input type="text" class="form-field" id="pretInput" placeholder="np. gikk">
+                        </div>
+                        <div class="form-input">
+                            <label class="form-label">Perfektum</label>
+                            <input type="text" class="form-field" id="perfInput" placeholder="np. har gått">
+                        </div>
+                    </div>
+                    <button class="control-btn btn-success" onclick="checkCompleteAnswers()">Sprawdź</button>
+                </div>
+            `;
+            
+            // Add enter key listener
+            document.querySelectorAll('.form-field').forEach(input => {
+                input.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') {
+                        checkCompleteAnswers();
+                    }
+                });
+            });
+            
+            document.getElementById('nextBtn').style.display = 'none';
+        }
+        
+        function loadChooseMode(content) {
+            const verb = getCurrentVerb();
+            const allVerbs = getAllVerbs();
+            const formType = ['pres', 'pret', 'perf'][Math.floor(Math.random() * 3)];
+            const formLabels = { pres: 'Present', pret: 'Preteritum', perf: 'Perfektum' };
+            
+            // Create wrong options
+            const options = [verb[formType]];
+            while (options.length < 4) {
+                const randomVerb = allVerbs[Math.floor(Math.random() * allVerbs.length)];
+                const wrongOption = randomVerb[formType];
+                if (!options.includes(wrongOption)) {
+                    options.push(wrongOption);
+                }
+            }
+            
+            shuffleArray(options);
+            gameState.correctAnswer = verb[formType];
+            gameState.currentFormType = formType;
+            
+            content.innerHTML = `
+                <div class="question-container">
+                    <h2 class="question-title">Wybierz poprawną formę (${formLabels[formType]})</h2>
+                    <div class="verb-card">
+                        <div class="verb-infinitive">${verb.inf}</div>
+                        <div class="verb-translation">${verb.meaning}</div>
+                    </div>
+                    <div class="options-grid">
+                        ${options.map(option => `
+                            <div class="option-card" onclick="selectOption(this, '${option}')">
+                                ${option}
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+            
+            document.getElementById('nextBtn').style.display = 'none';
+        }
+        
+        function loadMatchMode(content) {
+            // Implementation for matching mode - simplified for now
+            loadChooseMode(content);
+        }
+        
+        function getCurrentVerb() {
+            const verbList = verbs[gameState.difficulty];
+            if (gameState.currentIndex >= verbList.length) {
+                gameState.currentIndex = 0;
+            }
+            gameState.currentVerb = verbList[gameState.currentIndex];
+            return gameState.currentVerb;
+        }
+        
+        function getAllVerbs() {
+            return Object.values(verbs).flat();
+        }
+        
+        function flipCard() {
+            const flashcard = document.querySelector('.flashcard');
+            flashcard.classList.toggle('flipped');
+        }
+        
+        function checkCompleteAnswers() {
+            if (gameState.isAnswered) return;
+            
+            const verb = gameState.currentVerb;
+            const presInput = document.getElementById('presInput');
+            const pretInput = document.getElementById('pretInput');
+            const perfInput = document.getElementById('perfInput');
+            
+            const presCorrect = presInput.value.trim().toLowerCase() === verb.pres.toLowerCase();
+            const pretCorrect = pretInput.value.trim().toLowerCase() === verb.pret.toLowerCase();
+            const perfCorrect = perfInput.value.trim().toLowerCase() === verb.perf.toLowerCase();
+            
+            presInput.classList.add(presCorrect ? 'correct' : 'incorrect');
+            pretInput.classList.add(pretCorrect ? 'correct' : 'incorrect');
+            perfInput.classList.add(perfCorrect ? 'correct' : 'incorrect');
+            
+            const allCorrect = presCorrect && pretCorrect && perfCorrect;
+            
+            gameState.totalQuestions++;
+            if (allCorrect) {
+                gameState.correctAnswers++;
+                gameState.streak++;
+                gameState.score += 30;
+                showFeedback(true, 'Wszystkie formy poprawne! Świetna robota!');
+                if (gameState.streak >= 3) {
+                    addAchievement('🔥 Gorąca seria!');
+                }
+            } else {
+                gameState.streak = 0;
+                let correctForms = [];
+                if (!presCorrect) correctForms.push(`Present: ${verb.pres}`);
+                if (!pretCorrect) correctForms.push(`Preteritum: ${verb.pret}`);
+                if (!perfCorrect) correctForms.push(`Perfektum: ${verb.perf}`);
+                showFeedback(false, `Prawidłowe formy: ${correctForms.join(', ')}`);
+            }
+            
+            gameState.isAnswered = true;
+            document.getElementById('nextBtn').style.display = 'inline-block';
+            updateStats();
+        }
+        
+        function selectOption(element, answer) {
+            if (gameState.isAnswered) return;
+            
+            const isCorrect = answer === gameState.correctAnswer;
+            
+            // Disable all options
+            document.querySelectorAll('.option-card').forEach(card => {
+                card.style.pointerEvents = 'none';
+                if (card.textContent.trim() === gameState.correctAnswer) {
+                    card.classList.add('correct');
+                }
+            });
+            
+            element.classList.add('selected');
+            if (!isCorrect) {
+                element.classList.add('incorrect');
+            }
+            
+            gameState.totalQuestions++;
+            if (isCorrect) {
+                gameState.correctAnswers++;
+                gameState.streak++;
+                gameState.score += 15;
+                showFeedback(true, 'Brawo! Prawidłowa odpowiedź!');
+            } else {
+                gameState.streak = 0;
+                showFeedback(false, `Nieprawidłowo. Poprawna odpowiedź to: ${gameState.correctAnswer}`);
+            }
+            
+            gameState.isAnswered = true;
+            document.getElementById('nextBtn').style.display = 'inline-block';
+            updateStats();
+        }
+        
+        function showFeedback(isCorrect, message) {
+            const feedback = document.getElementById('feedback');
+            feedback.textContent = message;
+            feedback.className = `feedback ${isCorrect ? 'correct' : 'incorrect'}`;
+            feedback.style.display = 'block';
+        }
+        
+        function addAchievement(text) {
+            const achievements = document.getElementById('achievements');
+            const achievement = document.createElement('div');
+            achievement.className = 'achievement';
+            achievement.textContent = text;
+            achievements.appendChild(achievement);
+            
+            setTimeout(() => {
+                achievement.remove();
+            }, 3000);
+        }
+        
+        function nextQuestion() {
+            gameState.currentIndex++;
+            gameState.isAnswered = false;
+            hideElements();
+            loadContent();
+        }
+        
+        function skipQuestion() {
+            gameState.streak = 0;
+            nextQuestion();
+        }
+        
+        function restartGame() {
+            gameState = {
+                ...gameState,
+                currentIndex: 0,
+                score: 0,
+                streak: 0,
+                mastered: 0,
+                totalQuestions: 0,
+                correctAnswers: 0,
+                masteredVerbs: new Set(),
+                isAnswered: false
+            };
+            updateStats();
+            loadContent();
+        }
+        
+        function resetProgress() {
+            gameState.currentIndex = 0;
+            gameState.isAnswered = false;
+        }
+        
+        function updateStats() {
+            document.getElementById('score').textContent = gameState.score;
+            document.getElementById('streak').textContent = gameState.streak;
+            document.getElementById('mastered').textContent = gameState.masteredVerbs.size;
+            
+            const accuracy = gameState.totalQuestions > 0 
+                ? Math.round((gameState.correctAnswers / gameState.totalQuestions) * 100)
+                : 0;
+            document.getElementById('accuracy').textContent = accuracy + '%';
+        }
+        
+        function updateProgress() {
+            const verbList = verbs[gameState.difficulty];
+            const progress = ((gameState.currentIndex + 1) / verbList.length) * 100;
+            document.getElementById('progressFill').style.width = progress + '%';
+        }
+        
+        function hideElements() {
+            document.getElementById('feedback').style.display = 'none';
+            document.getElementById('nextBtn').style.display = 'inline-block';
+        }
+        
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+        
+        // Keyboard shortcuts
+        document.addEventListener('keydown', function(e) {
+            if (e.key === ' ' || e.key === 'Enter') {
+                if (gameState.mode === 'flashcards') {
+                    e.preventDefault();
+                    if (document.querySelector('.flashcard.flipped')) {
+                        nextQuestion();
+                    } else {
+                        flipCard();
+                    }
+                }
+            }
+        });
+        
+        document.addEventListener('DOMContentLoaded', initGame);
+    </script>
+</body>
+</html>
