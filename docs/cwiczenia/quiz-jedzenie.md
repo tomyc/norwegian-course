@@ -290,7 +290,8 @@ Ten quiz sprawdził Twoją znajomość:
 
 - **[Wróć do Lekcji 11](../lekcje-srednie/lekcja-11.md)** - powtórz materiał
 - **[Słownictwo: Jedzenie](../slownictwo/jedzenie.md)** - pełna lista słów
-- **[Memory Game - Jedzenie](../games/memory-game.html?category=food)** - interaktywna gra
+- **[Memory Game - Jedzenie](../games/memory_game.html?category=food)** - 
+  interaktywna gra
 - **[Dialogi praktyczne](../cwiczenia/dialogi.md)** - rozmowy w restauracji
 
 ---

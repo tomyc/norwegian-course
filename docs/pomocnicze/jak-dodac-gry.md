@@ -85,7 +85,7 @@ nav:
   - # ... inne sekcje
   - 🎮 Gry i ćwiczenia:
     - Przegląd gier: games/index.md
-    - Memory Game: games/memory-game.html
+    - Memory Game: games/memory_game.html
     - Pronunciation Trainer: games/pronunciation_trainer.html
     - Quiz Generator: games/quiz-generator.html
 ```
@@ -211,7 +211,7 @@ input, select, textarea {
 
 Po przeczytaniu lekcji, przetestuj swoją wiedzę:
 
-🎮 **[Zagraj w Memory Game - Jedzenie](../games/memory-game.html?category=food)**
+🎮 **[Zagraj w Memory Game - Jedzenie](../games/memory_game.html?category=food)**
 
 🔊 **[Ćwicz wymowę słów z jedzeniem](../games/pronunciation_trainer.html?category=food)**
 ```
